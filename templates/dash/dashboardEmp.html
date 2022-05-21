@@ -25,6 +25,103 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
    <style>
+
+    body{
+        background: #fefefe;
+      }
+      
+      h1{
+        font-family: Helvetica;
+        text-align: center;
+        font-size: 70px;
+        margin: 150px 0;
+        display: block;
+      }
+      
+      #newsletter-popup{
+        margin: 70px auto;
+        padding:30px 40px 40px;
+        background: #f5828a;
+        border-radius: 5px;
+        width: 25%;
+        position: relative;
+        transition: all 1s ease-in-out;
+      }
+      
+      @media screen and (max-width: 1366px){
+        #newsletter-popup{
+          width: 40%;
+        }
+      }
+      
+      @media screen and (max-width: 992px){
+        #newsletter-popup{
+          width: 70%;
+        }
+      }
+      
+      .newsletter-overlay{
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.7);
+        transition: opacity 500ms;
+        visibility: visible;
+        opacity: 1;
+        display: none;
+      }
+      
+      #newsletter-popup h3{
+        color: #fff;
+        font-size: 24px;
+        margin: 0 0 10px;
+        font-family: 'Gloria Hallelujah',cursive;
+      }
+      
+      #newsletter-popup input[type="text"]{
+          width: 100%;
+          height: 36px;
+          border: none;
+          text-indent: 10px;
+          font-size: 13px;
+          border-bottom: 2px solid #faeaec;
+          border-top: 2px solid #fff;
+          padding: 0;
+          color: #666;
+          margin-bottom: 15px;
+      }
+      
+      #newsletter-popup input[type="submit"]{
+        background: #6EC5D9;
+          border: none;
+          border-bottom: 3px solid #57B8CE;
+          color: #fff;
+          text-align: center;
+          display: block;
+          padding: 0;
+          line-height: 1.5;
+          width: 100%;
+          cursor: pointer;
+          margin: 0;
+          font-size: 21px;
+          font-family: "Gloria Hallelujah",cursive;
+      }
+      
+      #newsletter-popup .popup-close{
+        color: #fff;
+        height: 30px;
+        width: 30px;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        text-align: center;
+        text-decoration: none;
+        line-height: 30px;
+        font-family:  "Gloria Hallelujah",cursive;
+        font-weight: bold;
+      }
     #page-inner {
     width: 100%;
     margin: 10px 20px 10px 0px;
@@ -91,7 +188,7 @@ input[type=submit] {
     height: auto;
 }
 </style>
-   
+  
 
 </head>
 <body>
@@ -168,10 +265,59 @@ input[type=submit] {
             </div>
             
         </nav>  
+      
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper" >
             <div id="page-inner" style="padding:20px; margin:0px;">
-               
+               <!-- Button trigger modal -->
+
+  <!-- Modal -->
+  <div class="modal fade"  data-backdrop="static" data-keyboard="false" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Verify As a Employer</h5>
+      
+        </div>
+        <form action="{% url 'jobs:documentEmp' %}" method="POST">
+        <div class="modal-body">
+            <div class="mb-3">
+                <label for="formFile" class="form-label">companyIdCard</label>
+                <input class="form-control" type="file" name="companyIdCard" id="formFile">
+              </div>
+              <div class="mb-3">
+                <label for="formFile" class="form-label">shopStablished</label>
+                <input class="form-control" type="file" name="shopStablished" id="formFile">
+              </div>
+              <div class="mb-3">
+                <label for="formFile" class="form-label">udyogAAdhar</label>
+                <input class="form-control" type="file" name="udyogAAdhar" id="formFile">
+              </div>
+              <div class="mb-3">
+                <label for="formFile" class="form-label">certificateOfIncorpation</label>
+                <input class="form-control" type="file" name="certificateOfIncorpation" id="formFile">
+              </div>
+              <div class="mb-3">
+                <label for="formFile" class="form-label">msmacertificate</label>
+                <input class="form-control" type="file" name="msmacertificate" id="formFile">
+              </div>
+              <div class="mb-3">
+                <label for="formFile" class="form-label">Tan</label>
+                <input class="form-control" type="file" name="Tan" id="formFile">
+              </div>
+              <div class="mb-3">
+                <label for="formFile" class="form-label">Din</label>
+                <input class="form-control" type="file" name="Din" id="formFile">
+              </div>
+        </div>
+        <div class="modal-footer">
+        
+          <button type="button" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
                  <!-- /. ROW  -->
                  <div class="tab-content">
                     <div id="home" class="tab-pane fade in active">
@@ -991,7 +1137,54 @@ input[type=submit] {
      <!-- /. WRAPPER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
- 
+    <h1>Wait for 5 seconds!</h1>
+
+
+    <script>
+        var delay = 5000; //in milleseconds
+
+jQuery(document).ready(function($){
+  setTimeout(function(){ showNewsletterPopup(); }, delay);
+  
+  $('.popup-close').click(function(){
+      $('.newsletter-overlay').hide();
+      
+      //when closed create a cookie to prevent popup to show again on refresh
+      setCookie('newsletter-popup', 'popped', 30);
+  });
+});
+
+function showNewsletterPopup(){
+  if( getCookie('newsletter-popup') == ""){
+     $('.newsletter-overlay').show();
+     setCookie('newsletter-popup', 'popped', 30);
+  }
+  else{
+    console.log("Newsletter popup blocked.");
+  }
+}
+
+
+function setCookie(cname,cvalue,exdays)
+{
+    var d = new Date();
+    d.setTime(d.getTime()+(exdays*24*60*60*1000));
+    var expires = "expires="+d.toGMTString();
+    document.cookie = cname+"="+cvalue+"; "+expires+"; path=/";
+}
+
+function getCookie(cname)
+{
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0; i<ca.length; i++) 
+    {
+        var c = jQuery.trim(ca[i]);
+        if (c.indexOf(name)==0) return c.substring(name.length,c.length);
+    }
+    return "";
+}
+    </script>
     <script>
         function autocomplete(inp, arr) {
           /*the autocomplete function takes two arguments,
@@ -1211,19 +1404,20 @@ input[type=submit] {
         </script>
 
 
+        <script>
+            setTimeout(function() {
+                $('#exampleModalCenter').click();
+                $("#exampleModalCenter").modal();
+                }, 2000);
+            
+            $(document).ready(function(){
+                setTimeout(function(){
+                    console.log("popup")
+                   PopUp();
+                },1000); // 5000 to load it after 5 seconds from page load
+             });
+          </script>
 
-<script>
-    function PopUp(hideOrshow) {
-    if (hideOrshow == 'hide') document.getElementById('ac-wrapper').style.display = "none";
-    else document.getElementById('ac-wrapper').removeAttribute('style');
-}
-window.onload = function () {
-    setTimeout(function () {
-        PopUp('show');
-       
-    }, 5000);
-}
-</script>
    
 </body>
 </html>

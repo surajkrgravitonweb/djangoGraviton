@@ -1,5 +1,7 @@
+from pyexpat import model
 from this import d
 from django.db import models
+from django.forms import ModelMultipleChoiceField
 from django.urls import reverse
 from django.utils import timezone
 
@@ -180,3 +182,12 @@ class TrainCertPlacement(models.Model):
     skill=models.CharField(max_length=121)
     benifits=models.CharField(max_length=121)
     Technology=models.CharField(max_length=121)
+
+class DoucmentEmp(models.Model):
+    companyIdCard=models.FileField(upload_to='uploads/category', blank=True, null=True)
+    shopStablished=models.FileField(upload_to='uploads/category', blank=True, null=True)
+    udyogAAdhar=models.FileField(upload_to='uploads/category', blank=True, null=True)
+    certificateOfIncorpation=models.FileField(upload_to='uploads/category', blank=True, null=True)
+    msmacertificate=models.FileField(upload_to='uploads/category', blank=True, null=True)
+    Tan=models.FileField(upload_to='uploads/category', blank=True, null=True)
+    Din=models.FileField(upload_to='uploads/category', blank=True, null=True)

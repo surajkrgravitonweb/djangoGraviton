@@ -1096,4 +1096,14 @@ def supportEmp(request):
     return render(request,"jobPortal/supportEmp.html")
 def supportCandidate(request):
     return render(request,"jobPortal/supportCandidate.html")
+def documentEmp(request):
+    if request.method=="POST":
+        companyIdCard=request.POST['companyIdCard']
+        shopStablished=request.POST['shopStablished']
+        udyogAAdhar=request.POST['udyogAAdhar']
+        certificateOfIncorpation=request.POST['certificateOfIncorpation']
+        msmacertificate=request.POST['msmacertificate']
+        Tan=request.POST['Tan']
+        Din=request.POST['Din']
+        return redirect("jobs:employer-dashboard")
 

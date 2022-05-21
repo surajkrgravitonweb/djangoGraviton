@@ -115,6 +115,7 @@ urlpatterns = [
     path("mockInterview/",mockInterview,name="mockInterview"),
     path("faqEmp/",faqEmp,name="faqEmp"),
     path("supportEmp/",supportEmp,name="supportEmp"),
-    path("supportCandidate/",supportCandidate,name="supportCandidate")
+    path("supportCandidate/",supportCandidate,name="supportCandidate"),
+    path("documentEmp/",documentEmp,name="documentEmp")
     
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
