@@ -30,13 +30,66 @@
     <link rel="stylesheet" type="text/css" href="{% static 'jobPortal/css/style.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'jobPortal/css/responsive.css' %}" />
     <!-- favicon links -->
-    <link rel="shortcut icon" type="image/png" href="{% static 'jobPortal/logo_png.png' %}" />
+    <link rel="shortcut icon" type="image/png" href="{% static 'jobPortal/gravitonLogo.png'  %}" />
 <script src='../../../google_analytics_auto.js'></script>
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.8.2.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.js"></script> 
 
 </head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    $(".owl-carousel").owlCarousel({
+        autoPlay: 3000,
+        items : 1, // THIS IS IMPORTANT
+        responsive : {
+              480 : { items : 1  }, // from zero to 480 screen width 4 items
+              768 : { items : 2  }, // from 480 screen widthto 768 6 items
+              1024 : { items : 3   // from 768 screen width to 1024 8 items
+              }
+          },
+    })
+</script>
 <style>
+   .button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #64afef;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 28px;
+  padding: 10px;
+  width: 150px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
 .ebcf_modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
@@ -366,7 +419,7 @@ input[type=submit] {
         <div class="row">
         <div class="col-xs-6 col-sm-6">
         <div class="gc_logo">
-         <a href="{% url 'jobs:home' %}"><img src="{% static 'jobPortal/logo_png.png' %}" alt="Logo" title="Grace Church"></a>
+         <a href="{% url 'jobs:home' %}"><img src="{% static 'jobPortal/gravitonLogo.png'  %}" alt="Logo" title="Grace Church"></a>
         </div>
          </div>
         <div class="col-xs-6 col-sm-6">
@@ -575,8 +628,8 @@ input[type=submit] {
                 </div>
             </div>
         </div>
-        <div class="jp_banner_heading_cont_wrapper">
-            <div class="container">
+        <div class="jp_banner_heading_cont_wrapper" style="padding-top:60px;">
+            <div class="container" style="padding-bottom:60px; ">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="jp_job_heading_wrapper">
@@ -685,12 +738,242 @@ input[type=submit] {
                         </div>
                         </div>
 
-                 
+                 {% else %}
+                            {% if request.user.role == 'employer' %}
+                             
+                            <div class="container" style="">
+                                <div id="boxes" style="padding:20px; ">
+                                
+                                <div style="top: 50%; width:100%; left: 50%; display: none;" id="dialog" class="window"> 
+                                <div id="san">
+                                <!-- <a href="#" class="close agree"><img src="close-icon.png" width="25" style="float:right; margin-right: -25px; margin-top: -20px;"></a> -->
+                                <div class="text-center">
+                                <div class="row" style=" padding:20px; ">
+                                    <div class="col-lg-2 col-sm-2"></div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12" style="border:1px solid white; border-radius:10px; padding:5px; background-color:white; ">
+                                        <div class="item">
+                                            <div class="">
+                                                <div id="isIntersecting" class="module resume-services">
+                                                    <div class="box pr mb0" style="    padding: 9px;
+    padding-top: 11px;
+}">
+                                                        <h2 class="heading lg more-on-rgt">
+                                                            Premium Candidates
+                                                            <a href="{% url 'jobs:viewallPrimum' %} "
+                                                               
+                                                                class="more-link under-link fs-14 normal">View All</a>
+                                                        </h2>
+                                                        <div class="scroll-content-y">
+                                                            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                                                                <div class="container">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-10 col-md-12 col-sm-12 col-xs-12" style="padding-left:0px">
+                                                                            <div class="jp_first_client_slider_wrapper">
+                                                                                <div class="jp_first_client_slider_img_overlay"></div>
+                                                                                <div class="jp_client_heading_wrapper">
+                                                                                    <h2>Top Candidates</h2>
+                                                                                </div>
+                                                                                
+                                                                                <div class="jp_client_slider_wrapper">
+                                                                                    <div class="owl-carousel owl-theme">
 
+                                                                                       {% for x in primumCandidates %} 
+                                                                                        <div class="item">
+                                                                                            <div class="jp_client_slide_show_wrapper">
+                                                                                                <div class="jp_client_slider_img_wrapper">
+                                                                                                    <img src="{% static 'img/userimage.jpg' %}" alt="client_img" />
+                                                                                                </div>
+                                                                                                <div class="jp_client_slider_cont_wrapper" >
+                                                                                                   <div class="row">
+                                                                                                       <div class="col-lg-8">
+                                                                                                           <!-- <div class="row"><h4 style="color:white">NAME: &nbsp;srishti</h4></div> -->
+                                                                                                           <div class="row"><h4 style="color:white">EMAIL: &nbsp;{{x.email}}</h4></div>
+                                                                                                       </div>
+                                                                                                       <div class="col-lg-3"><a href="{% url 'jobs:candidatesFull' x.pk %}" ><button class="button" style="vertical-align:middle"><span>View Profile </span></button>
+                                                                                                        </a></div>
+                                                                                                   </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                   
+                                                                                    </div>
+                                                                                    {% endfor %}
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                              
+                                                              
+                                                              </div>
+                                                        </div>
+                                                    </div>
+                                                    <a href='' class='close' style="color:black; position:absolute;bottom:10px;right:5px;">Close</a>
+
+                                                </div>
+        
+                                            </div>
+                                        </div>
+                                    </div>
+                                  
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                                <!-- <div style="width: 2478px; font-size: 32pt; color:white; height: 1202px; display: none; opacity: 0.4;" id="mask"></div> -->
+                                </div>
+                                </div>
+                            </div>
+                            </div>
+                            {% else %}
+                                       
+                            <div class="container">
+                                <div id="boxes" style="padding:20px; ">
+                                
+                                <div style="top: 50%; width:100%; left: 50%; display: none;" id="dialog" class="window"> 
+                                <div id="san">
+                                <!-- <a href="#" class="close agree"><img src="close-icon.png" width="25" style="float:right; margin-right: -25px; margin-top: -20px;"></a> -->
+                                <div class="text-center">
+                                <div class="row" style=" padding:20px; ">
+                                    <div class="col-lg-2 col-sm-2"></div>
+                                    <div class="col-lg-8 col-md-8 col-sm-12" style="border:1px solid white; border-radius:10px; padding:5px; background-color:white; ">
+                                        <div class="item">
+                                            <div class="">
+                                                <div id="isIntersecting" class="module resume-services">
+                                                    <div class="box pr mb0">
+                                                        <h2 class="heading lg more-on-rgt">
+                                                            Premium Services
+                                                            <a href="{% url 'jobs:viewallPrimum' %} "
+                                                               
+                                                                class="more-link under-link fs-14 normal">View All</a>
+                                                        </h2>
+                                                        <div class="scroll-content-x">
+                                                            <ul class="four-col">
+                                                                <li class="resume-highlighter unit-no-arrows">
+                                                                    <div onclick="window.homeBehavior.home.common.trackResumeResponse(&quot;Profile Highlighter&quot;)"
+                                                                        class="content-box">
+                                                                        <figure>
+                                                                            <div class="bg-content">
+                                                                                <div class=""><img width="100%"
+                                                                                        alt="Profile Highlighter"
+                                                                                        title="Profile Highlighter"
+                                                                                        src="https://static1.shine.com/l/m/images/blog/Profile_Summary_for_freshers.png"  height="100px"
+                                                                                        lazy="loaded" class="load-lazily"></div>
+                                                                                <div class="bg-txt tl">
+                                                                                    <h3 class="bold fs-14 career-service-title">
+                                                                                        Profile Highlighter</h3>
+                                                                                    <p class="fs-12">Grab the attention of
+                                                                                        employers</p> <a
+                                                                                        href="{% url 'jobs:profileHightligter' %}"
+                                                                                        onclick="window.homeBehavior.home.tracking.trackCareerServcies(&quot;Read-More&quot;), window.homeBehavior.careerEvents.captureCareerEvents('HOMEPAGE')"
+                                                                                        class="under-link fr"><i
+                                                                                            class="arrow-ic"></i>
+                                                                                        Read More
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </figure>
+                                                                    </div>
+                                                                </li>
+                                                                <li class="right-resume unit-no-arrows">
+                                                                    <div onclick="window.homeBehavior.home.common.trackResumeResponse(&quot;Resume Writing&quot;)"
+                                                                        class="content-box">
+                                                                        <figure>
+                                                                            <div class="bg-content">
+                                                                                <div class=""><img width="100%"
+                                                                                        alt="Resume Writing"
+                                                                                        title="Resume Writing"
+                                                                                        src="https://media.istockphoto.com/vectors/hand-writing-curriculum-vitae-application-paper-sheet-vector-id928188940?s=612x612"  height="100px"
+                                                                                        lazy="loaded" class="load-lazily"></div>
+                                                                                <div class="bg-txt tl">
+                                                                                    <h3 class="bold fs-14 career-service-title">
+                                                                                        Resume Writing</h3>
+                                                                                    <p class="fs-12">Professionally written
+                                                                                        resume + cover letter</p> <a
+                                                                                        href="{% url 'jobs:resumeWriting' %}"
+                                                                                        onclick="window.homeBehavior.home.tracking.trackCareerServcies(&quot;Read-More&quot;), window.homeBehavior.careerEvents.captureCareerEvents('HOMEPAGE')"
+                                                                                        class="under-link fr"><i
+                                                                                            class="arrow-ic"></i>
+                                                                                        Read More
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </figure>
+                                                                    </div>
+                                                                </li>
+                                                                <li class="xpress-resume unit-no-arrows">
+                                                                    <div onclick="window.homeBehavior.home.common.trackResumeResponse(&quot;Featured Profile&quot;)"
+                                                                        class="content-box">
+                                                                        <figure>
+                                                                            <div class="bg-content">
+                                                                                <div class=""><img width="100%"
+                                                                                        alt="Featured Profile"
+                                                                                        title="Featured Profile"
+                                                                                        src="https://d3kqdc25i4tl0t.cloudfront.net/articles/content/_483397_profile.hero.jpg"  height="100px"
+                                                                                        lazy="loaded" class="load-lazily"></div>
+                                                                                <div class="bg-txt tl">
+                                                                                    <h3 class="bold fs-14 career-service-title">
+                                                                                        Featured Profile</h3>
+                                                                                    <p class="fs-12">Better your chances of
+                                                                                        getting shortlisted</p> <a
+                                                                                        href="{% url 'jobs:featuredProfile' %}"
+                                                                                        onclick="window.homeBehavior.home.tracking.trackCareerServcies(&quot;Read-More&quot;), window.homeBehavior.careerEvents.captureCareerEvents('HOMEPAGE')"
+                                                                                        class="under-link fr"><i
+                                                                                            class="arrow-ic"></i>
+                                                                                        Read More
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </figure>
+                                                                    </div>
+                                                                </li>
+                                                                <li class="career-booster unit-no-arrows">
+                                                                    <div onclick="window.homeBehavior.home.common.trackResumeResponse(&quot;Career Booster&quot;)"
+                                                                        class="content-box">
+                                                                        <figure>
+                                                                            <div class="bg-content">
+                                                                                <div class=""><img width="100%"
+                                                                                        alt="Career Booster"
+                                                                                        title="Career Booster"
+                                                                                        src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20200421222156/How-can-You-Boost-Your-Career-to-the-Next-Level.png"  height="100px"
+                                                                                        lazy="loaded" class="load-lazily"></div> 
+                                                                                <div class="bg-txt tl">
+                                                                                    <h3 class="bold fs-14 career-service-title">
+                                                                                        Career Booster</h3>
+                                                                                    <p class="fs-12">Get the power of two in one
+                                                                                        and speed up your job search</p> <a
+                                                                                        href="{% url 'jobs:careerBooster' %}"
+                                                                                        onclick="window.homeBehavior.home.tracking.trackCareerServcies(&quot;Read-More&quot;), window.homeBehavior.careerEvents.captureCareerEvents('HOMEPAGE')"
+                                                                                        class="under-link fr"><i
+                                                                                            class="arrow-ic"></i>
+                                                                                        Read More
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </figure>
+                                                                    </div>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <a href='' class='close' style="color:black; position:absolute;bottom:10px;right:5px;">Close</a>
+
+                                                </div>
+        
+                                            </div>
+                                        </div>
+                                    </div>
+                                  
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+                                <!-- <div style="width: 2478px; font-size: 32pt; color:white; height: 1202px; display: none; opacity: 0.4;" id="mask"></div> -->
+                                </div>
+                                </div>
+                            {% endif %}
                    {% endif %}
 
 
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="jp_banner_main_jobs_wrapper">
                             <div class="jp_banner_main_jobs">
                                 <ul>
@@ -701,48 +984,48 @@ input[type=submit] {
                                 </ul>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
         <div class="jp_banner_jobs_categories_wrapper">
             <div class="container">
-                <div class="jp_top_jobs_category_wrapper jp_job_cate_left_border jp_job_cate_left_border_bottom" >
+                <div class="jp_top_jobs_category_wrapper jp_job_cate_left_border jp_job_cate_left_border_bottom" style="padding-top: 7px; padding-bottom:7px" >
                     <div class="jp_top_jobs_category">
                         <i class="fa fa-code"></i>
                         <h3><a href="{% url 'jobs:category' '1' %}">Developer</a></h3>
                         <p>(240 jobs)</p>
                     </div>
                 </div>
-                <div class="jp_top_jobs_category_wrapper jp_job_cate_left_border_bottom">
+                <div class="jp_top_jobs_category_wrapper jp_job_cate_left_border_bottom"style="padding-top: 7px; padding-bottom:7px">
                     <div class="jp_top_jobs_category">
                         <i class="fa fa-laptop"></i>
                         <h3><a href="{% url 'jobs:category' '2' %}">Technology</a></h3>
                         <p>(504 jobs)</p>
                     </div>
                 </div>
-                <div class="jp_top_jobs_category_wrapper jp_job_cate_left_border_bottom">
+                <div class="jp_top_jobs_category_wrapper jp_job_cate_left_border_bottom" style="padding-top: 7px; padding-bottom:7px">
                     <div class="jp_top_jobs_category">
                         <i class="fa fa-bar-chart"></i>
                         <h3><a href="{% url 'jobs:category' '3' %}">Accounting</a></h3>
                         <p>(2250 jobs)</p>
                     </div>
                 </div>
-                <div class="jp_top_jobs_category_wrapper jp_job_cate_left_border_res">
+                <div class="jp_top_jobs_category_wrapper jp_job_cate_left_border_res" style="padding-top: 7px; padding-bottom:7px">
                     <div class="jp_top_jobs_category">
                         <i class="fa fa-medkit"></i>
                         <h3><a href="{% url 'jobs:category' '4' %}">Medical</a></h3>
                         <p>(202 jobs)</p>
                     </div>
                 </div>
-                <div class="jp_top_jobs_category_wrapper">
+                <div class="jp_top_jobs_category_wrapper" style="padding-top: 7px; padding-bottom:7px">
                     <div class="jp_top_jobs_category">
                         <i class="fa fa-university"></i>
                         <h3><a href="{% url 'jobs:category' '5' %}">Government</a></h3>
                         <p>(1457 jobs)</p>
                     </div>
                 </div>
-                <div class="jp_top_jobs_category_wrapper">
+                <div class="jp_top_jobs_category_wrapper" style="padding-top: 7px; padding-bottom:7px">
                     <div class="jp_top_jobs_category">
                         <i class="fa fa-th-large"></i>
                         <h3><a href="{% url 'jobs:jobs' %}">All Jobs</a></h3>
@@ -754,7 +1037,7 @@ input[type=submit] {
     </div>
     <!-- Header Wrapper End -->
     <!-- jp tittle slider Wrapper Start -->
-    <div class="jp_tittle_slider_main_wrapper" style="float:left; width:100%; margin-top:30px; ">
+    <!-- <div class="jp_tittle_slider_main_wrapper" style="float:left; width:100%; margin-top:30px; ">
         <div class="container">
             <div class="jp_tittle_name_wrapper">
                 <div class="jp_tittle_name">
@@ -776,7 +1059,6 @@ input[type=submit] {
                                     {% else %}
                                     <a href="{% url 'jobs:jobs-detail' x.id %}"> <img src="{% static 'img/company1.jpg' %}" style="width:120px; height:120px;" /> </a> 
                                     {% endif %}
-                                    <!-- "{% static 'jobPortal/images/content/title_img1.png' %}" -->
                                 </div>
                                 
                                 <div class="jp_tittle_side_cont_wrapper">
@@ -792,7 +1074,7 @@ input[type=submit] {
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- jp tittle slider Wrapper End -->
     <!-- jp first sidebar Wrapper Start -->
     <div class="jp_first_sidebar_main_wrapper">
@@ -809,7 +1091,7 @@ input[type=submit] {
                                     <div class="owl-carousel owl-theme">
                                         {% for company  in company %}
                                         <div class="item">
-                                            <div class="jp_hiring_content_main_wrapper">
+                                            <div class="jp_hiring_content_main_wrapper" style="padding-top:10px;">
                                                 <div class="jp_hiring_content_wrapper">
                                                     
                                                 {% if x.jobImage %}
@@ -817,16 +1099,20 @@ input[type=submit] {
   
                                                 {% else %}
                                                 {% comment %} <a href="{% url 'jobs:jobs-detail' company.id %}"> <img src="{%static 'jobPortal/images/content/hiring_img1.png' %}" alt="hiring_img" /></a> {% endcomment %}
-                                              <a href="{% url 'jobs:jobs-detail' company.id %}"> <img src="{%static 'jobPortal/images/content/hiring_img2.jpg' %}" alt="hiring_img"
-                                                style="width:150px; height:150px;" /></a> 
+                                              <!-- <a href="{% url 'jobs:jobs-detail' company.id %}">
+                                                   <img src="{%static 'jobPortal/images/content/hiring_img2.jpg' %}" alt="hiring_img"
+                                                style="width:150px; height:150px;" /></a>  -->
 
                                                 {% endif %}
-                                                 
-                                                    <h4><a href="{% url 'jobs:jobs-detail' company.id %}">{{company.company_name}}</a></h4>
+                                                
+                                                    <h4  style=" white-space: nowrap; 
+                                                    width: 140px; 
+                                                    overflow: hidden;
+                                                    text-overflow: clip; "><a href="{% url 'jobs:jobs-detail' company.id %}">{{company.company_name}}</a></h4>
                                                     <p><a href="{% url 'jobs:jobs-detail' company.id %}">{{company.location}}</a></p>
-                                                    <ul>
+                                                   <div class="col-lg-3 col-md-2 col-sm-12">
                                                         <li><a href="{% url 'jobs:jobs-detail' company.id %}">{{company.opening}} Opening</a></li>
-                                                    </ul>
+                                                   </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -853,50 +1139,40 @@ input[type=submit] {
                                         <div class="owl-carousel owl-theme">
                                             <div class="item" data-hash="zero">
                                                 {% for x in featured1 %}
+                                               
                                                 
                                                     <div class="col-lg-6 col-md-6 col-sm-12">
                                                 <div class="jp_job_post_main_wrapper_cont">
                                                     <div class="jp_job_post_main_wrapper" >
                                                         <div class="row">
                                                             <div>
-                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                                <!-- <div class="jp_job_post_side_img">
-                                                                    
-
-}
-                                                                   
-                                                                </div> -->
+                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
+                                                               
                                                                 <div class="jp_job_post_right_cont">
-                                                                    <a href="{% url 'jobs:jobs-detail' x.id %}" ><h4>{{x.title}}  ({{x.experence}} Exp.)</h4></a>
-                                                                    <p>{{x.company_name}}.</p>
+                                                                    <a href="{% url 'jobs:jobs-detail' x.id %}" style=" white-space: nowrap; 
+                                                                    width: 300px;  overflow: hidden; text-overflow: clip; "><h4>{{x.title}} <br> ({{x.experence}} Exp.)</h4></a>
+                                                                    <p style=" white-space: nowrap; 
+                                                                    width: 300px;  overflow: hidden; text-overflow: clip; ">{{x.company_name}}.</p>
                                                                     <ul>
                                                                         <li><i class="fa fa-cc-paypal"></i>&nbsp;{{x.salary}}P.A.</li>
+                                                                        <br>
                                                                         <li><i class="fa fa-map-marker"></i>&nbsp; {{x.location}}</li>
                                                                     </ul>
                                                                 </div>
                                                             </div>
-                                                            <!-- <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"> -->
                                                                 <div class="jp_job_post_right_btn_wrapper">
-                                                                    <ul>
+                                                                    <ul style="display:flex">
                                                                         <li><a href=""><i class="fa fa-heart-o"></i></a></li>
                                                                          <li><a href="">{{x.type}}</a></li>
                                                                        
-                                                                        <li><a href="{% url 'jobs:jobs-detail' x.id %}">Apply</a></li>
+                                                                        <li style="margin-top:0px;"><a href="{% url 'jobs:jobs-detail' x.id %}">Apply</a></li>
                                                                     </ul>
                                                                 </div>
-                                                            <!-- </div> -->
                                                             </div>
                                                             
                                                         </div>
                                                     </div>
-                                                    <div class="jp_job_post_keyword_wrapper">
-                                                        <ul>
-                                                            <li><i class="fa fa-tags"></i>Keywords :</li>
-                                                            {% for tag in job.tags.all %}
-                                                            <li>                           <a href="">                                         {{ tag.name }}</a></li>
-                                                           {% endfor %}
-                                                        </ul>
-                                                    </div>
+                                                   
                                                 </div>
                                                 </div>
                                                 
@@ -905,21 +1181,46 @@ input[type=submit] {
                                             </div>
                                             <div class="item" data-hash="one">
                                                 {% for x in featured2 %}
-                                                <div class="jp_job_post_main_wrapper_cont">
+                                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                                    <div class="jp_job_post_main_wrapper_cont">
+                                                        <div class="jp_job_post_main_wrapper" >
+                                                            <div class="row">
+                                                                <div>
+                                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
+                                                                   
+                                                                    <div class="jp_job_post_right_cont">
+                                                                        <a href="{% url 'jobs:jobs-detail' x.id %}"  >
+                                                                        <h4 style=" white-space: nowrap; 
+                                                                        width: 300px;  overflow: hidden; text-overflow: clip; ">{{x.title}}<br>  ({{x.experence}} Exp.)</h4></a>
+                                                                        <p style=" white-space: nowrap; 
+                                                                        width: 300px;  overflow: hidden; text-overflow: clip; ">{{x.company_name}}.</p>
+                                                                        <ul>
+                                                                            <li><i class="fa fa-cc-paypal"></i>&nbsp;{{x.salary}}P.A.</li>
+                                                                            <br>
+                                                                            <li><i class="fa fa-map-marker"></i>&nbsp; {{x.location}}</li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                    <div class="jp_job_post_right_btn_wrapper">
+                                                                        <ul style="display:flex">
+                                                                            <li><a href=""><i class="fa fa-heart-o"></i></a></li>
+                                                                             <li><a href="">{{x.type}}</a></li>
+                                                                           
+                                                                            <li style="margin-top:0px;"><a href="{% url 'jobs:jobs-detail' x.id %}">Apply</a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                       
+                                                    </div>
+                                                    </div>
+                                                <!-- <div class="jp_job_post_main_wrapper_cont">
                                                     <div class="jp_job_post_main_wrapper">
                                                         <div class="row">
                                                             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                                                <!-- <div class="jp_job_post_side_img">
-                                                                    
-
- {% if x.jobImage %}
- <img src="{{x.jobImage.url}}" alt="tittle_img" />
- <a href="{% url 'jobs:jobs-detail' x.id %}"><img src="{{x.jobImage.url}}" alt="post_img" /></a>
- {% else %}
- <a href="{% url 'jobs:jobs-detail' x.id %}"><img src="{% static 'jobPortal/images/content/job_post_img1.jpg' %}" alt="post_img" /></a>
- {% endif %}
-                                                                   
-                                                                </div> -->
+                                                                
                                                                 <div class="jp_job_post_right_cont">
                                                                                                                                         <a href="{% url 'jobs:jobs-detail' x.id %}" ></a><h4>{{x.title}}  ({{x.experence}} Exp.)</h4></a>
 
@@ -952,29 +1253,57 @@ input[type=submit] {
                                                            {% endfor %}
                                                         </ul>
                                                     </div>
-                                                </div>
+                                                </div> -->
                                                 {% endfor %}
                                             
                                             </div>
                                             <div class="item" data-hash="two">
                                                 {% for x in featured3 %}
-                                                <div class="jp_job_post_main_wrapper_cont">
+                                                <div class="col-lg-6 col-md-6 col-sm-12">
+                                                    <div class="jp_job_post_main_wrapper_cont">
+                                                        <div class="jp_job_post_main_wrapper" >
+                                                            <div class="row">
+                                                                <div>
+                                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding:0px;">
+                                                                   
+                                                                    <div class="jp_job_post_right_cont">
+                                                                        <a href="{% url 'jobs:jobs-detail' x.id %}"  >
+                                                                        <h4 style=" white-space: nowrap; 
+                                                                        width: 300px;  overflow: hidden; text-overflow: clip; ">{{x.title}}<br>  ({{x.experence}} Exp.)</h4></a>
+                                                                        <p style=" white-space: nowrap; 
+                                                                        width: 300px;  overflow: hidden; text-overflow: clip; ">{{x.company_name}}.</p>
+                                                                        <ul>
+                                                                            <li><i class="fa fa-cc-paypal"></i>&nbsp;{{x.salary}}P.A.</li>
+                                                                            <br>
+                                                                            <li><i class="fa fa-map-marker"></i>&nbsp; {{x.location}}</li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                    <div class="jp_job_post_right_btn_wrapper">
+                                                                        <ul style="display:flex">
+                                                                            <li><a href=""><i class="fa fa-heart-o"></i></a></li>
+                                                                             <li><a href="">{{x.type}}</a></li>
+                                                                           
+                                                                            <li style="margin-top:0px;"><a href="{% url 'jobs:jobs-detail' x.id %}">Apply</a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                       
+                                                    </div>
+                                                    </div>
+                                                <!-- <div class="jp_job_post_main_wrapper_cont">
                                                     <div class="jp_job_post_main_wrapper">
                                                         <div class="row">
                                                             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                                                                <!-- <div class="jp_job_post_side_img">
-                                                                    
-
- {% if x.jobImage %}
- <img src="{{x.jobImage.url}}" alt="tittle_img" />
- <a href="{% url 'jobs:jobs-detail' x.id %}"><img src="{{x.jobImage.url}}" alt="post_img" /></a>
- {% else %}
- <a href="{% url 'jobs:jobs-detail' x.id %}"><img src="{% static 'jobPortal/images/content/job_post_img1.jpg' %}" alt="post_img" /></a>
- {% endif %}
-                                                                   
-                                                                </div> -->
+                                                              
                                                                 <div class="jp_job_post_right_cont">
-                                                                                                                                        <a href="{% url 'jobs:jobs-detail' x.id %}" ><h4>{{x.title}}  ({{x.experence}} Exp.)</h4></a>
+                                                                <a href="{% url 'jobs:jobs-detail' x.id %}" style=" white-space: nowrap; 
+                                                                width: 50px; 
+                                                                overflow: hidden;
+                                                                text-overflow: clip; "><h4>{{x.title}} <br> ({{x.experence}} Exp.)</h4></a>
 
                                                                     <p>{{x.company_name}}.</p>
                                                                     <ul>
@@ -997,15 +1326,8 @@ input[type=submit] {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="jp_job_post_keyword_wrapper">
-                                                        <ul>
-                                                            <li><i class="fa fa-tags"></i>Keywords :</li>
-                                                            {% for tag in job.tags.all %}
-                                                            <li>                           <a href="">                                         {{ tag.name }}</a></li>
-                                                           {% endfor %}
-                                                        </ul>
-                                                    </div>
-                                                </div>
+                                                   
+                                                </div> -->
                                                 {% endfor %}
                                             </div>
 
@@ -1014,9 +1336,9 @@ input[type=submit] {
                                     <div class="video_nav_img_wrapper">
                                         <div class="video_nav_img">
                                             <ul>
-                                                <li><a class="button secondary url owl_nav" href="#zero">1</a></li>
-                                                <li><a class="button secondary url owl_nav" href="#one">2</a></li>
-                                                <li><a class="button secondary url owl_nav active" href="#two">3</a></li>
+                                                <li><a class="" href="#zero">1</a></li>
+                                                <li><a class="" href="#one">2</a></li>
+                                                <li><a class=" active" href="#two">3</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -1185,9 +1507,9 @@ input[type=submit] {
                                     <div class="video_nav_img_wrapper">
                                         <div class="video_nav_img">
                                             <ul>
-                                                <li><a class="button secondary url owl_nav" href="#zero">1</a></li>
-                                                <li><a class="button secondary url owl_nav" href="#one">2</a></li>
-                                                <li><a class="button secondary url owl_nav active" href="#two">3</a></li>
+                                                <li><a class="" href="#zero">1</a></li>
+                                                <li><a class="" href="#one">2</a></li>
+                                                <li><a class=" active" href="#two">3</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -1356,9 +1678,9 @@ input[type=submit] {
                                     <div class="video_nav_img_wrapper">
                                         <div class="video_nav_img">
                                             <ul>
-                                                <li><a class="button secondary url owl_nav" href="#zero">1</a></li>
-                                                <li><a class="button secondary url owl_nav" href="#one">2</a></li>
-                                                <li><a class="button secondary url owl_nav active" href="#two">3</a></li>
+                                                <li><a class="" href="#zero">1</a></li>
+                                                <li><a class="" href="#one">2</a></li>
+                                                <li><a class=" active" href="#two">3</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -1529,9 +1851,9 @@ input[type=submit] {
                                     <div class="video_nav_img_wrapper">
                                         <div class="video_nav_img">
                                             <ul>
-                                                <li><a class="button secondary url owl_nav" href="#zero">1</a></li>
-                                                <li><a class="button secondary url owl_nav" href="#one">2</a></li>
-                                                <li><a class="button secondary url owl_nav active" href="#two">3</a></li>
+                                                <li><a class="" href="#zero">1</a></li>
+                                                <li><a class="" href="#one">2</a></li>
+                                                <li><a class=" active" href="#two">3</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -1541,7 +1863,7 @@ input[type=submit] {
                         {% if not request.user.is_authenticated %}
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="jp_register_section_main_wrapper">
-                                <div class="jp_regis_left_side_box_wrapper">
+                                <div class="jp_regis_left_side_box_wrapper" style="padding-top: 10px;padding-bottom:10px">
                                     <div class="jp_regis_left_side_box">
                                         <img src="{% static 'jobPortal/images/content/regis_icon.png' %}" alt="icon" />
                                         <h4>I’m an EMPLOYER</h4>
@@ -1551,7 +1873,7 @@ input[type=submit] {
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="jp_regis_right_side_box_wrapper">
+                                <div class="jp_regis_right_side_box_wrapper" style="padding-top: 10px;padding-bottom:10px">
                                     <div class="jp_regis_right_img_overlay"></div>
                                     <div class="jp_regis_right_side_box">
                                         <img src="{% static 'jobPortal/images/content/regis_icon2.png' %}" alt="icon" />
@@ -1599,6 +1921,7 @@ input[type=submit] {
                             </div>
                         </div>
                         {% endif %}
+                        
 
                     </div>
                 </div>
@@ -1692,19 +2015,17 @@ input[type=submit] {
                                 <!-- </div>
                               
                               </div> -->
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="jp_spotlight_main_wrapper">
+                             <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+                                <div class="jp_spotlight_main_wrapper" >
                                     <div class="spotlight_header_wrapper">
                                         <h4>Job Spotlight</h4>
                                     </div>
-                                    <div class="jp_spotlight_slider_wrapper">
-                                        <div class="owl-carousel owl-theme">
+                                    <div class="jp_spotlight_slider_wrapper" style="padding-bottom:0px; padding-left:0px; padding-top:0px; padding-right:0px;">
+                                        <div class="owl-carousel owl-theme" style="width:auto;">
                                             {% for x in featured1 %}
-                                            <div class="item">
-                                                <!-- <div class="jp_spotlight_slider_img_Wrapper">
-                                                    <img src="{% static 'jobPortal/images/content/spotlight_img.jpg' %}" alt="spotlight_img" />
-                                                </div> -->
-                                                <div class="jp_spotlight_slider_cont_Wrapper">
+                                            <div class="item" style="margin-top:0px; padding-top:0px;">
+                                               
+                                                <div class="jp_spotlight_slider_cont_Wrapper" >
                                                     <h4>{{x.title}} ({{x.experence}} Exp.)</h4>
                                                     <p>{{x.company_name}}</p>
                                                     <ul >
@@ -1715,7 +2036,7 @@ input[type=submit] {
                                                 <div class="jp_spotlight_slider_btn_wrapper">
                                                     <div class="jp_spotlight_slider_btn">
                                                         <ul>
-                                                            <li><a href="{% url 'jobs:jobs-detail' x.id %}"> &nbsp; Apply</a></li>
+                                                            <li style="width:50%; height:30px;"><a href="{% url 'jobs:jobs-detail' x.id %}"> &nbsp; Apply</a></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -1725,16 +2046,17 @@ input[type=submit] {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            </div>  -->
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px">
                                 <div class="jp_rightside_job_categories_wrapper">
                                     <div class="jp_rightside_job_categories_heading">
                                         <h4>Jobs by Company</h4>
                                     </div>
-                                    <div class="jp_rightside_job_categories_content">
+                                    <div class="jp_rightside_job_categories_content" style="padding-left:0px;padding-bottom:0px;" >
                                         <div class="handyman_sec1_wrapper">
                                             <div class="content">
-                                                <div class="box">
+                                                <div class="box" style=" height: 500px;
+                                                overflow-y: auto;  width:auto;">
                                                     {% for x in company %}
                                                     <a href="{%url 'jobs:shortValueCompany' x.pk %}"> <p>
                                                       {{x.company_name}}
@@ -1743,29 +2065,32 @@ input[type=submit] {
                                                        {% endfor %}
                                                 </div>
                                             </div>
-                                            <ul>
+                                            <!-- <ul>
                                                 <li><i class="fa fa-plus-circle"></i> <a href="{% url 'jobs:jobs' %}">SHOW MORE</a></li>
-                                            </ul>
+                                            </ul> -->
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:10px;">
+                            <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:10px;height:200px;">
                                 <div class="jp_add_resume_wrapper">
                                     <div class="jp_add_resume_img_overlay"></div>
                                     <div class="jp_add_resume_cont">
                                       <div class="col-lg-4 col-md-4 col-sm-4"></div>
+                                      <ul>
+                                        <li><a href="{% url 'jobs:career' %}"><i class="fa fa-plus-circle"></i> &nbsp;View More</a></li>
+                                    </ul>
                                         <h4>Career Advice</h4>
                                         <h5 style="color:white; margin-top:30px;">+91 838 004 4677</h5>
                                         <p style="color:white;">hr@whitehr.com.</p>
-                                        <ul>
-                                            <!-- <button id="myBtn"> <li><a href="#email_section"><i class="fa fa-plus-circle"></i> &nbsp;Enter Email</a></li></button> -->
+                                        <!-- <ul>
                                             <li><a href="{% url 'jobs:career' %}"><i class="fa fa-plus-circle"></i> &nbsp;View More</a></li>
-                                        </ul>
-                                    </div>
+                                        </ul> -->
+                                    <!-- </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            </div> --> 
+                           
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">
                                 <div class="jp_rightside_job_categories_wrapper">
                                     <div class="jp_rightside_job_categories_heading">
                                         <h4>Jobs by Category</h4>
@@ -1841,7 +2166,7 @@ input[type=submit] {
                                     <div class="spotlight_header_wrapper">
                                         <h4>Job Spotlight</h4>
                                     </div>
-                                    <div class="jp_spotlight_slider_wrapper">
+                                    <div class="jp_spotlight_slider_wrapper"  >
                                         <div class="owl-carousel owl-theme">
                                             {% for x in featured1 %}
                                              <div class="item">
@@ -1903,7 +2228,6 @@ input[type=submit] {
                                         <h5 style="color:white; margin-top:30px;">+91 838 004 4677</h5>
                                         <p style="color:white;">hr@whitehr.com.</p>
                                         <ul>
-                                            <!-- <button id="myBtn"> <li><a href="#email_section"><i class="fa fa-plus-circle"></i> &nbsp;Enter Email</a></li></button> -->
                                             <li><a href="{% url 'jobs:career' %}"><i class="fa fa-plus-circle"></i> &nbsp;View More</a></li>
                                         </ul>
                                     </div>
@@ -1934,32 +2258,34 @@ input[type=submit] {
             </div>
         </div>
     </div>
+
+    
     <!-- jp first sidebar Wrapper End -->
     <!-- jp counter Wrapper Start -->
     <div class="jp_counter_main_wrapper">
         <div class="container">
-            <div class="gc_counter_cont_wrapper">
-                <div class="count-description">
-                    <span class="timer">2540</span><i class="fa fa-plus"></i>
-                    <h5 class="con1">Jobs Available</h5>
+            <div class="gc_counter_cont_wrapper" style="padding:10px";>
+                <div class="count-description" >
+                    <span class="timer" style="font-size:35px">2540</span><i class="fa fa-plus" style="font-size:17px"></i>
+                    <h5 class="con1" style="margin-bottom:10px">Jobs Available</h5>
                 </div>
             </div>
-            <div class="gc_counter_cont_wrapper2">
+            <div class="gc_counter_cont_wrapper2" style="padding:10px";>
                 <div class="count-description">
-                    <span class="timer">7325</span><i class="fa fa-plus"></i>
-                    <h5 class="con2">Members</h5>
+                    <span class="timer" style="font-size:35px">7325</span><i class="fa fa-plus" style="font-size:17px"></i>
+                    <h5 class="con2" style="margin-bottom:10px">Members</h5>
                 </div>
             </div>
-            <div class="gc_counter_cont_wrapper3">
+            <div class="gc_counter_cont_wrapper3" style="padding:10px";>
                 <div class="count-description">
-                    <span class="timer">1924</span><i class="fa fa-plus"></i>
-                    <h5 class="con3">Resumes</h5>
+                    <span class="timer" style="font-size:35px">1924</span><i class="fa fa-plus" style="font-size:17px"></i>
+                    <h5 class="con3" style="margin-bottom:10px">Resumes</h5>
                 </div>
             </div>
-            <div class="gc_counter_cont_wrapper4">
+            <div class="gc_counter_cont_wrapper4" style="padding:10px";>
                 <div class="count-description">
-                    <span class="timer">4275</span><i class="fa fa-plus"></i>
-                    <h5 class="con4">Company</h5>
+                    <span class="timer" style="font-size:35px">4275</span><i class="fa fa-plus" style="font-size:17px"></i>
+                    <h5 class="con4" style="margin-bottom:10px">Company</h5>
                 </div>
             </div>
         </div>
@@ -2001,16 +2327,15 @@ input[type=submit] {
                                                                 class="content-box">
                                                                 <figure>
                                                                     <div class="bg-content">
-                                                                        <div class="img-holder"><img width="100%"
+                                                                        <div class=""><img width="100%"
                                                                                 alt="Profile Highlighter"
                                                                                 title="Profile Highlighter"
-                                                                                src="//media.monsterindia.com/trex/prod-cdn/media/product/2021/august/K109Ubc6KIVisXQSRJaQhTSXJpOAkU0UUA2dpe7R.png"
+                                                                                src="https://static1.shine.com/l/m/images/blog/Profile_Summary_for_freshers.png"  height="100px"
                                                                                 lazy="loaded" class="load-lazily"></div>
                                                                         <div class="bg-txt tl">
                                                                             <h3 class="bold fs-14 career-service-title">
                                                                                 Profile Highlighter</h3>
-                                                                            <p class="fs-12">Grab the attention of
-                                                                                employers</p> <a
+                                                                             <p class="fs-12">Attract the Employer</p> <a
                                                                                 href="{% url 'jobs:profileHightligter' %}"
                                                                                 onclick="window.homeBehavior.home.tracking.trackCareerServcies(&quot;Read-More&quot;), window.homeBehavior.careerEvents.captureCareerEvents('HOMEPAGE')"
                                                                                 class="under-link fr"><i
@@ -2027,10 +2352,10 @@ input[type=submit] {
                                                                 class="content-box">
                                                                 <figure>
                                                                     <div class="bg-content">
-                                                                        <div class="img-holder"><img width="100%"
+                                                                        <div class=""><img width="100%"
                                                                                 alt="Resume Writing"
                                                                                 title="Resume Writing"
-                                                                                src="//media.monsterindia.com/trex/prod-cdn/media/product/2021/august/aJ98j6upmWI4DEMecdM4NTPzesMybGMNVQBA3Xod.png"
+                                                                                src="https://media.istockphoto.com/vectors/hand-writing-curriculum-vitae-application-paper-sheet-vector-id928188940?s=612x612" height="100px"
                                                                                 lazy="loaded" class="load-lazily"></div>
                                                                         <div class="bg-txt tl">
                                                                             <h3 class="bold fs-14 career-service-title">
@@ -2053,10 +2378,10 @@ input[type=submit] {
                                                                 class="content-box">
                                                                 <figure>
                                                                     <div class="bg-content">
-                                                                        <div class="img-holder"><img width="100%"
+                                                                        <div class=""><img width="100%"
                                                                                 alt="Featured Profile"
                                                                                 title="Featured Profile"
-                                                                                src="//media.monsterindia.com/trex/prod-cdn/media/product/2021/august/Xra3gEbEDCZChclt6KyeY08aT14mQIemY87tp56k.png"
+                                                                                src="https://d3kqdc25i4tl0t.cloudfront.net/articles/content/_483397_profile.hero.jpg"  height="100px"
                                                                                 lazy="loaded" class="load-lazily"></div>
                                                                         <div class="bg-txt tl">
                                                                             <h3 class="bold fs-14 career-service-title">
@@ -2079,10 +2404,10 @@ input[type=submit] {
                                                                 class="content-box">
                                                                 <figure>
                                                                     <div class="bg-content">
-                                                                        <div class="img-holder"><img width="100%"
+                                                                        <div class=""><img width="100%"
                                                                                 alt="Career Booster"
                                                                                 title="Career Booster"
-                                                                                src="//media.monsterindia.com/trex/prod-cdn/media/product/2021/august/UWwaneAf2OBhqcauh7PujGU5mIavChpFlRnZabZp.png"
+                                                                                src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20200421222156/How-can-You-Boost-Your-Career-to-the-Next-Level.png"  height="100px"
                                                                                 lazy="loaded" class="load-lazily"></div>
                                                                         <div class="bg-txt tl">
                                                                             <h3 class="bold fs-14 career-service-title">
@@ -2124,16 +2449,15 @@ input[type=submit] {
                                                                 class="content-box">
                                                                 <figure>
                                                                     <div class="bg-content">
-                                                                        <div class="img-holder"><img width="100%"
+                                                                        <div class=""><img width="100%"
                                                                                 alt="Profile Highlighter"
                                                                                 title="Profile Highlighter"
-                                                                                src="//media.monsterindia.com/trex/prod-cdn/media/product/2021/august/K109Ubc6KIVisXQSRJaQhTSXJpOAkU0UUA2dpe7R.png"
+                                                                                src="https://static1.shine.com/l/m/images/blog/Profile_Summary_for_freshers.png"  height="100px"
                                                                                 lazy="loaded" class="load-lazily"></div>
                                                                         <div class="bg-txt tl">
                                                                             <h3 class="bold fs-14 career-service-title">
                                                                                 Profile Highlighter</h3>
-                                                                            <p class="fs-12">Grab the attention of
-                                                                                employers</p> <a
+                                                                             <p class="fs-12">Attract the Employer</p> <a
                                                                                 href="{% url 'jobs:profileHightligter' %}"
                                                                                 onclick="window.homeBehavior.home.tracking.trackCareerServcies(&quot;Read-More&quot;), window.homeBehavior.careerEvents.captureCareerEvents('HOMEPAGE')"
                                                                                 class="under-link fr"><i
@@ -2150,10 +2474,10 @@ input[type=submit] {
                                                                 class="content-box">
                                                                 <figure>
                                                                     <div class="bg-content">
-                                                                        <div class="img-holder"><img width="100%"
+                                                                        <div class=""><img width="100%"
                                                                                 alt="Resume Writing"
                                                                                 title="Resume Writing"
-                                                                                src="//media.monsterindia.com/trex/prod-cdn/media/product/2021/august/aJ98j6upmWI4DEMecdM4NTPzesMybGMNVQBA3Xod.png"
+                                                                                src="https://media.istockphoto.com/vectors/hand-writing-curriculum-vitae-application-paper-sheet-vector-id928188940?s=612x612"  height="100px"
                                                                                 lazy="loaded" class="load-lazily"></div>
                                                                         <div class="bg-txt tl">
                                                                             <h3 class="bold fs-14 career-service-title">
@@ -2176,10 +2500,10 @@ input[type=submit] {
                                                                 class="content-box">
                                                                 <figure>
                                                                     <div class="bg-content">
-                                                                        <div class="img-holder"><img width="100%"
+                                                                        <div class=""><img width="100%"
                                                                                 alt="Featured Profile"
                                                                                 title="Featured Profile"
-                                                                                src="//media.monsterindia.com/trex/prod-cdn/media/product/2021/august/Xra3gEbEDCZChclt6KyeY08aT14mQIemY87tp56k.png"
+                                                                                src="https://d3kqdc25i4tl0t.cloudfront.net/articles/content/_483397_profile.hero.jpg"  height="100px"
                                                                                 lazy="loaded" class="load-lazily"></div>
                                                                         <div class="bg-txt tl">
                                                                             <h3 class="bold fs-14 career-service-title">
@@ -2202,10 +2526,10 @@ input[type=submit] {
                                                                 class="content-box">
                                                                 <figure>
                                                                     <div class="bg-content">
-                                                                        <div class="img-holder"><img width="100%"
+                                                                        <div class=""><img width="100%"
                                                                                 alt="Career Booster"
                                                                                 title="Career Booster"
-                                                                                src="//media.monsterindia.com/trex/prod-cdn/media/product/2021/august/UWwaneAf2OBhqcauh7PujGU5mIavChpFlRnZabZp.png"
+                                                                                src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20200421222156/How-can-You-Boost-Your-Career-to-the-Next-Level.png"  height="100px"
                                                                                 lazy="loaded" class="load-lazily"></div>
                                                                         <div class="bg-txt tl">
                                                                             <h3 class="bold fs-14 career-service-title">
@@ -2247,16 +2571,15 @@ input[type=submit] {
                                                                 class="content-box">
                                                                 <figure>
                                                                     <div class="bg-content">
-                                                                        <div class="img-holder"><img width="100%"
+                                                                        <div class=""><img width="100%"
                                                                                 alt="Profile Highlighter"
                                                                                 title="Profile Highlighter"
-                                                                                src="//media.monsterindia.com/trex/prod-cdn/media/product/2021/august/K109Ubc6KIVisXQSRJaQhTSXJpOAkU0UUA2dpe7R.png"
+                                                                                src="https://static1.shine.com/l/m/images/blog/Profile_Summary_for_freshers.png"  height="100px"
                                                                                 lazy="loaded" class="load-lazily"></div>
                                                                         <div class="bg-txt tl">
                                                                             <h3 class="bold fs-14 career-service-title">
                                                                                 Profile Highlighter</h3>
-                                                                            <p class="fs-12">Grab the attention of
-                                                                                employers</p> <a
+                                                                             <p class="fs-12">Attract the Employer</p> <a
                                                                                 href="{% url 'jobs:profileHightligter' %}"
                                                                                 onclick="window.homeBehavior.home.tracking.trackCareerServcies(&quot;Read-More&quot;), window.homeBehavior.careerEvents.captureCareerEvents('HOMEPAGE')"
                                                                                 class="under-link fr"><i
@@ -2273,10 +2596,10 @@ input[type=submit] {
                                                                 class="content-box">
                                                                 <figure>
                                                                     <div class="bg-content">
-                                                                        <div class="img-holder"><img width="100%"
+                                                                        <div class=""><img width="100%"
                                                                                 alt="Resume Writing"
                                                                                 title="Resume Writing"
-                                                                                src="//media.monsterindia.com/trex/prod-cdn/media/product/2021/august/aJ98j6upmWI4DEMecdM4NTPzesMybGMNVQBA3Xod.png"
+                                                                                src="https://media.istockphoto.com/vectors/hand-writing-curriculum-vitae-application-paper-sheet-vector-id928188940?s=612x612"  height="100px"
                                                                                 lazy="loaded" class="load-lazily"></div>
                                                                         <div class="bg-txt tl">
                                                                             <h3 class="bold fs-14 career-service-title">
@@ -2299,10 +2622,10 @@ input[type=submit] {
                                                                 class="content-box">
                                                                 <figure>
                                                                     <div class="bg-content">
-                                                                        <div class="img-holder"><img width="100%"
+                                                                        <div class=""><img width="100%"
                                                                                 alt="Featured Profile"
                                                                                 title="Featured Profile"
-                                                                                src="//media.monsterindia.com/trex/prod-cdn/media/product/2021/august/Xra3gEbEDCZChclt6KyeY08aT14mQIemY87tp56k.png"
+                                                                                src="https://d3kqdc25i4tl0t.cloudfront.net/articles/content/_483397_profile.hero.jpg"  height="100px"
                                                                                 lazy="loaded" class="load-lazily"></div>
                                                                         <div class="bg-txt tl">
                                                                             <h3 class="bold fs-14 career-service-title">
@@ -2325,10 +2648,10 @@ input[type=submit] {
                                                                 class="content-box">
                                                                 <figure>
                                                                     <div class="bg-content">
-                                                                        <div class="img-holder"><img width="100%"
+                                                                        <div class=""><img width="100%"
                                                                                 alt="Career Booster"
                                                                                 title="Career Booster"
-                                                                                src="//media.monsterindia.com/trex/prod-cdn/media/product/2021/august/UWwaneAf2OBhqcauh7PujGU5mIavChpFlRnZabZp.png"
+                                                                                src="https://media.geeksforgeeks.org/wp-content/cdn-uploads/20200421222156/How-can-You-Boost-Your-Career-to-the-Next-Level.png"  height="100px"
                                                                                 lazy="loaded" class="load-lazily"></div>
                                                                         <div class="bg-txt tl">
                                                                             <h3 class="bold fs-14 career-service-title">
@@ -2357,12 +2680,12 @@ input[type=submit] {
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12" style="margin-top:10px;">
                     <div class="jp_rightside_career_wrapper jp_best_deal_right_sec_wrapper">
                         <div class="jp_rightside_career_heading">
                             <h4>Jobs by Location</h4>
                         </div>
-                        <div class="jp_rightside_job_categories_content">
+                        <div class="jp_rightside_job_categories_content" style="height:340px; overflow-y: auto;">
                             <ul>
                                 {% for x in location %}
                                 <li><i class="fa fa-caret-right"></i> <a href="{% url 'jobs:shortValueLocation' x.pk %}">{{x.location}}</a></li>
@@ -2384,6 +2707,7 @@ input[type=submit] {
                         <div class="jp_client_heading_wrapper">
                             <h2>What Clients Say?</h2>
                         </div>
+                        
                         <div class="jp_client_slider_wrapper">
                             <div class="owl-carousel owl-theme">
                                 <div class="item">
@@ -2392,7 +2716,7 @@ input[type=submit] {
                                             <img src="{% static 'jobPortal/images/content/client_slider_img.jpg' %}" alt="client_img" />
                                         </div>
                                         <div class="jp_client_slider_cont_wrapper">
-                                            <p>This job Portal is good,
+                                            <p>This job Portal is good and
                                                 It centralizes all the jobs from different job portals like Naukri.com, Monster.in, Shine etc.
                                                 Having all type of jobs relevant to everyone</p>
                                             <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star-o"></i><span>~ Rahul Doe &nbsp;<b>(Ui Designer)</b></span>
@@ -2459,14 +2783,14 @@ input[type=submit] {
     <!-- jp Newsletter Wrapper Start -->
     <div class="jp_main_footer_img_wrapper">
         <div class="jp_newsletter_img_overlay_wrapper"></div>
-        <div class="jp_newsletter_wrapper">
+        <div class="jp_newsletter_wrapper" style="padding-top:20px; padding-bottom:20px;">
             <div class="container">
               <div class="row">
                 <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                   <!-- <div class="jp_newsletter_text">
                     <a href="/en/"><img src="/static/jobPortal/images/content/news_logo.png" class="img-responsive" alt="news_logo"></a>
                   </div> -->
-                  <h5 style="color:white; font-size:20px;">Our Whitehr team will get back to you in 2hours</h5>
+                  <h5 style="color:white; font-size:20px;">Our Whitehr team will get back to you </h5>
                 </div>
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                   <div class="jp_newsletter_field" >
@@ -2489,23 +2813,23 @@ input[type=submit] {
           </div>
         <!-- jp Newsletter Wrapper End -->
         <!-- jp footer Wrapper Start -->
-        <div class="jp_footer_main_wrapper">
+        <div class="jp_footer_main_wrapper" style="padding:0px;">
             <div class="container">
                 <div class="row">
                     
-                    <div class="jp_footer_three_sec_main_wrapper">
+                    <div class="jp_footer_three_sec_main_wrapper" style="padding-top:30px">
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
                             <div class="jp_footer_first_cont_wrapper">
                                 <div class="jp_footer_first_cont">
                                     <h2>ADDRESS</h2>
-                                    <p>Mayur Trade Center Phase 2, Old Pune – Mumbai Highway, Station Ofc 101C, Chinchwad, Pimpri-Chinchwad, Maharashtra 411019
+                                    <p style="padding-top:25px">Mayur Trade Center Phase 2, Old Pune – Mumbai Highway, Station Ofc 101C, Chinchwad, Pimpri-Chinchwad, Maharashtra 411019
                                         hr@whitehr.com.<br><br>
                                         
-                                        Call us<br>
-                                        +91 838 004 4677</p>
-                                    <ul>
+                                        <!-- Call us<br>
+                                        +91 838 004 4677</p> -->
+                                    <!-- <ul>
                                         <li><i class="fa fa-plus-circle"></i>                            <a href="">                                         READ MORE</a></li>
-                                    </ul>
+                                    </ul> -->
                                 </div>
                             </div>
                         </div>
@@ -2514,7 +2838,7 @@ input[type=submit] {
                           <div class="jp_footer_candidate_wrapper jp_footer_candidate_wrapper4">
                               <div class="jp_footer_candidate">
                                   <h2>Quic Links</h2>
-                                  <ul>
+                                  <ul style="margin-top:25px">
                                     <li><a href="{% url 'jobs:QuizAdmin' %}"><i class="fa fa-caret-right" aria-hidden="true"></i>QuizAdmin</a></li>
                                       <li><a href="{% url 'jobs:member' %}"><i class="fa fa-caret-right" aria-hidden="true"></i>Member </a></li>
                                       <!-- <li>                           <a href="{% url 'jobs:checkout' %}">                                         <i class="fa fa-caret-right" aria-hidden="true"></i> checkout</a></li> -->
@@ -2534,14 +2858,14 @@ input[type=submit] {
                             <div class="jp_footer_candidate_wrapper jp_footer_candidate_wrapper2">
                                 <div class="jp_footer_candidate">
                                     <h2>For candidate</h2>
-                                    <ul>
+                                    <ul style="margin-top:25px">
                                         <li><a href="{% url 'jobs:testCandidate' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Add a Resume</a></li>
-                                        <li><a href="{% url 'jobs:testCandidate' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> candidate Dashboard</a></li>
+                                        <!-- <li><a href="{% url 'jobs:testCandidate' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> candidate Dashboard</a></li> -->
                                         <li><a href="{% url 'jobs:jobs' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Past Applications</a></li>
-                                        <li><a href="{% url 'jobs:testCandidate' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Job Alerts</a></li>
+                                        <!-- <li><a href="{% url 'jobs:testCandidate' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Job Alerts</a></li> -->
                                         <li><a href="{% url 'jobs:testCandidate' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Bookmarks</a></li>
-                                        <li><a href="{% url 'jobs:testCandidate' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> My Account</a></li>
-                                        <li><a href="{% url 'jobs:jobs' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Your Jobs</a></li>
+                                        <!-- <li><a href="{% url 'jobs:testCandidate' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> My Account</a></li> -->
+                                        <!-- <li><a href="{% url 'jobs:jobs' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Your Jobs</a></li> -->
                                     </ul>
                                 </div>
                             </div>
@@ -2553,14 +2877,14 @@ input[type=submit] {
                             <div class="jp_footer_candidate_wrapper jp_footer_candidate_wrapper2">
                                 <div class="jp_footer_candidate">
                                     <h2>For candidate</h2>
-                                    <ul>
+                                    <ul style="margin-top:25px">
                                         <li><a href="{% url 'jobs:testCandidate' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Add a Resume</a></li>
-                                        <li><a href="{% url 'jobs:testCandidate' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> candidate Dashboard</a></li>
+                                        <!-- <li><a href="{% url 'jobs:testCandidate' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> candidate Dashboard</a></li> -->
                                         <li><a href="{% url 'jobs:jobs' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Past Applications</a></li>
                                         <li><a href="{% url 'jobs:testCandidate' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Job Alerts</a></li>
                                         <li><a href="{% url 'jobs:testCandidate' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Bookmarks</a></li>
-                                        <li><a href="{% url 'jobs:testCandidate' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> My Account</a></li>
-                                        <li><a href="{% url 'jobs:jobs' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Your Jobs</a></li>
+                                        <!-- <li><a href="{% url 'jobs:testCandidate' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> My Account</a></li> -->
+                                        <!-- <li><a href="{% url 'jobs:jobs' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Your Jobs</a></li> -->
                                     </ul>
                                 </div>
                             </div>
@@ -2571,7 +2895,7 @@ input[type=submit] {
                             <div class="jp_footer_candidate_wrapper jp_footer_candidate_wrapper3">
                                 <div class="jp_footer_candidate">
                                     <h2>For Employers</h2>
-                                    <ul>
+                                    <ul style="margin-top:25px">
                                         
                                         <li><a href="{% url 'jobs:candidates' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Browse candidates</a></li>
                                         <li><a href="{% url 'jobs:employer-dashboard' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Employer Dashboard</a></li>
@@ -2579,7 +2903,7 @@ input[type=submit] {
                                         <li><a href="{% url 'jobs:jobs' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Job Page</a></li>
                                         <li><a href="{% url 'jobs:member' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Job Packages</a></li>
                                        
-                                        <li><a href="{% url 'jobs:employer-dashboard' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> My Account</a></li>
+                                        <!-- <li><a href="{% url 'jobs:employer-dashboard' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> My Account</a></li> -->
                                     </ul>
                                 </div>
                             </div>
@@ -2591,15 +2915,15 @@ input[type=submit] {
                         <div class="jp_footer_candidate_wrapper jp_footer_candidate_wrapper3">
                             <div class="jp_footer_candidate">
                                 <h2>For Employers</h2>
-                                <ul>
+                                <ul style="margin-top:25px">
                                     
                                     <li><a href="{% url 'jobs:candidates' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Browse candidates</a></li>
-                                    <li><a href="{% url 'jobs:employer-dashboard' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Employer Dashboard</a></li>
+                                    <!-- <li><a href="{% url 'jobs:employer-dashboard' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Employer Dashboard</a></li> -->
                                     <li><a href="{% url 'jobs:employer-jobs-create' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Add Job</a></li>
                                     <li><a href="{% url 'jobs:jobs' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Job Page</a></li>
                                     <li><a href="{% url 'jobs:member' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Job Packages</a></li>
                                    
-                                    <li><a href="{% url 'jobs:employer-dashboard' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> My Account</a></li>
+                                    <!-- <li><a href="{% url 'jobs:employer-dashboard' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> My Account</a></li> -->
                                 </ul>
                             </div>
                         </div>
@@ -2609,18 +2933,19 @@ input[type=submit] {
                             <div class="jp_footer_candidate_wrapper jp_footer_candidate_wrapper4">
                                 <div class="jp_footer_candidate">
                                     <h2>Information</h2>
-                                    <ul>
+                                    <ul style="margin-top:25px">
                                        
                                         <!-- <li>                           <a href="{% url 'jobs:checkout' %}">                                         <i class="fa fa-caret-right" aria-hidden="true"></i> checkout</a></li> -->
                                       
                                         <!-- <li>                           <a href="{% url 'jobs:completeMember' %}">                                         <i class="fa fa-caret-right" aria-hidden="true"></i>complete member</a></li> -->
                                        
                                         
-                                        <li><a href="{% url 'jobs:contact' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Contact Us</a></li>
+                                        <!-- <li><a href="{% url 'jobs:contact' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Contact Us</a></li> -->
                                         <li><a href="{% url 'jobs:about' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> About</a></li>
                                         <li>                           <a href="{% url 'jobs:privacy' %}">                                         <i class="fa fa-caret-right" aria-hidden="true"></i> Privacy Policy</a></li>
                                         <li><a href="{% url 'jobs:RefundPolicy' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Refund Policy</a></li>
                                         <li><a href="{% url 'jobs:terms' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Terms & Condition</a></li>
+                                        <!-- <li><a href="{% url 'jobs:webprint' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> test</a></li> -->
 
                                     </ul>
                                 </div>
@@ -2629,8 +2954,8 @@ input[type=submit] {
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12  hidden-lg hidden-md visible-xs-block visible-sm-block " >
                             <div class="jp_footer_candidate_wrapper jp_footer_candidate_wrapper3">
                                 <div class="jp_footer_candidate">
-                                    <h2>Mobile View Footer</h2>
-                                    <ul>
+                                   
+                                    <ul style="margin-top:5px">
                                         
                                         <li><a href="{% url 'jobs:candidates' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Browse candidates</a></li>
                                         <li><a href="{% url 'jobs:employer-dashboard' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Employer Dashboard</a></li>
@@ -2645,7 +2970,7 @@ input[type=submit] {
                         </div>
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="jp_bottom_footer_Wrapper">
+                        <div class="jp_bottom_footer_Wrapper" style="margin-top:20px; padding-top:20px; padding-bottom:5px;">
                             <div class="row">
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                     <div class="jp_bottom_footer_left_cont">
@@ -2656,7 +2981,7 @@ input[type=submit] {
                                     </div>
                                 </div>
                                 <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                                    <div class="jp_bottom_footer_right_cont">
+                                    <div class="jp_bottom_footer_right_cont" >
                                         <ul>
                                             <li><a href="https://www.facebook.com/WhiteHr-Consultancy-Services-106164138349855"><i class="fa fa-facebook"></i></a></li>
                                             <li><a href="https://www.instagram.com/whitehrconsultancy/"><i class="fa fa-instagram"></i></a></li>
@@ -2674,7 +2999,7 @@ input[type=submit] {
     </div>
    
    
-    
+
     
     <script>
         function autocomplete(inp, arr) {
@@ -2837,6 +3162,10 @@ window.onclick = function(event) {
         ebModal.style.display = "none";
     }
 }
+
+$("#owl-demo").owlCarousel({
+    navigation : true
+  });
 </script>
  <!---------------------------->
 
@@ -2844,6 +3173,7 @@ window.onclick = function(event) {
     
     
     <!--main js file start-->
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="{% static 'jobPortal/js/bootstrap.js' %}"></script>
     <script src="{% static 'jobPortal/js/jquery.menu-aim.js' %}"></script>

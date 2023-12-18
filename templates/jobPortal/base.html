@@ -137,7 +137,7 @@
     <div class="topnav" id="myTopnav">
       
         <a href="{% url 'jobs:home' %}">
-          <img  src="/static/jobPortal/logo_png.png"
+          <img  src="/static/jobPortal/gravitonLogo.png"
             alt="Logo"
             title="whitehr"
             class="img-responsive"
@@ -148,15 +148,15 @@
           Home&nbsp;</a> 
           <a href="/en/jobs/" class="gc_main_navigation">
             Job&nbsp;</a>
-            <a href="/en/member/" class="gc_main_navigation">Member &nbsp;</a>
-            <a href="{% url 'jobs:allCourse' %}" class="gc_main_navigation">Course &nbsp;</a>
-            {% if request.user.role == 'employee' %}
+            
+          
+            {% if request.user.is_authenticated and request.user.role == 'employer' %}
             
               <a href="/en/member/" class="gc_main_navigation">Member &nbsp;</a>
             
             {% else %}
            
-              <a href="{% url 'jobs:allCourse' %}" class="gc_main_navigation">Course &nbsp;</a>
+              <a href="{% url 'jobs:allCourse' %}" class="gc_main_navigation">Training&Placements &nbsp;</a>
             
             {% endif %}
             <a href="/en/about/" class="gc_main_navigation">
@@ -164,10 +164,10 @@
               <a href="/en/blog/" class="gc_main_navigation">
                 Blog&nbsp;</a>
                 <a href="/en/contact/" class="gc_main_navigation">Contact</a>
-                {% if request.user.role == 'employee' %}
+                {% if request.user.is_authenticated and  request.user.role == 'employee' %}
                       <a href="{% url 'jobs:testCandidate' %}" class="gc_main_navigation">Dashboard &nbsp;</a>
                    
-                    {% elif request.user.role == 'employer'  %}
+                    {% elif  request.user.is_authenticated and request.user.role == 'employer'  %}
                   
                       <a href="{% url 'jobs:employer-dashboard' %}" class="gc_main_navigation">Dashboard &nbsp;</a>
                     
@@ -196,7 +196,7 @@
                 <div class="gc_logo">
                   <a href="{% url 'jobs:home' %}"
                     ><img
-                      src="/static/jobPortal/logo_png.png"
+                      src="/static/jobPortal/gravitonLogo.png"
                       alt="Logo"
                       title="whitehr"
                       class="img-responsive"
@@ -211,45 +211,45 @@
                   
                   <ul class="float_left">
                     <li class="has-mega gc_main_navigation">
-                      <a href="/en/" class="gc_main_navigation">
+                      <a href="/en/" class="gc_main_navigation" style=" text-decoration: none;">
                         Home&nbsp;</a> 
                       <!-- mega menu start -->
                      </li>
                     <li class="has-mega gc_main_navigation">
-                      <a href="/en/jobs/" class="gc_main_navigation">
+                      <a href="/en/jobs/" class="gc_main_navigation" style=" text-decoration: none;">
                         Job&nbsp;</a>
                     </li>
                     {% if request.user.role == 'employee' %}
                     <li class="parent gc_main_navigation">
-                      <a href="/en/member/" class="gc_main_navigation">Member &nbsp;</a>
+                      <a href="/en/member/" class="gc_main_navigation" style=" text-decoration: none;">Member &nbsp;</a>
                     </li>
                     {% else %}
                     <li class="parent gc_main_navigation">
-                      <a href="{% url 'jobs:allCourse' %}" class="gc_main_navigation">Course &nbsp;</a>
+                      <a href="{% url 'jobs:allCourse' %}" style=" text-decoration: none;" class="gc_main_navigation">Training/Certifications  &nbsp;</a>
                     </li>
                     {% endif %}
                     <li class="has-mega gc_main_navigation">
-                      <a href="/en/about/" class="gc_main_navigation">
+                      <a href="/en/about/" class="gc_main_navigation" style=" text-decoration: none;">
                         About&nbsp;</a>
                     </li>
                     <li class="has-mega gc_main_navigation">
-                      <a href="/en/blog/" class="gc_main_navigation">
+                      <a href="/en/blog/" class="gc_main_navigation" style=" text-decoration: none;">
                         Blog&nbsp;</a>
                     </li>
                     <li class="gc_main_navigation parent">
-                      <a href="/en/contact/" class="gc_main_navigation">Contact</a>
+                      <a href="/en/contact/" class="gc_main_navigation" style=" text-decoration: none;">Contact</a>
                     </li>
                     {% if request.user.role == 'employee' %}
                     <li class="gc_main_navigation parent" >
-                      <a  href="{% url 'jobs:testCandidate' %}"class="gc_main_navigation">Dashboard</a>
+                      <a  href="{% url 'jobs:testCandidate' %}" style=" text-decoration: none;" class="gc_main_navigation">Dashboard</a>
                     </li>
                     {% elif request.user.role == 'employer' %}
                     <li >
-                      <a href="{% url 'jobs:employer-dashboard' %}" class="gc_main_navigation">Dashboard</a>
+                      <a href="{% url 'jobs:employer-dashboard' %}" style=" text-decoration: none;" class="gc_main_navigation">Dashboard</a>
                     </li>
                     {% else %}
                     <li class="gc_main_navigation parent">
-                      <a href="{% url 'accounts:login' %}" class="gc_main_navigation">Login</a>
+                      <a href="{% url 'accounts:login' %}" style=" text-decoration: none;" class="gc_main_navigation">Login</a>
                     </li>
                     {% endif %}
                   </ul>
@@ -265,14 +265,14 @@
     {% block main-content %} {% endblock main-content %}
     <div class="jp_main_footer_img_wrapper">
       <div class="jp_newsletter_img_overlay_wrapper"></div>
-      <div class="jp_newsletter_wrapper">
+      <div class="jp_newsletter_wrapper" style="padding-top:20px;padding-bottom:20px;">
           <div class="container">
             <div class="row">
               <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12">
                 <!-- <div class="jp_newsletter_text">
                   <a href="/en/"><img src="/static/jobPortal/images/content/news_logo.png" class="img-responsive" alt="news_logo"></a>
                 </div> -->
-                <h5 style="color:white; font-size:20px;">Our Whitehr team will get back to you in 2hours</h5>
+                <h5 style="color:white; font-size:20px;">Our Whitehr team will get back to you</h5>
               </div>
               <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
                 <div class="jp_newsletter_field" >
@@ -282,7 +282,7 @@
                       {% csrf_token %}
                   <input type="text" name="phone" placeholder="Enter Your Mobile Number">
                   </div>
-                  <div class="col-lg-3 col-sm-12">
+                  <div class="">
                   <button type="submit">
                   </form>
                     Get a call back
@@ -299,28 +299,28 @@
           <div class="container">
               <div class="row">
                   
-                  <div class="jp_footer_three_sec_main_wrapper">
+                  <div class="jp_footer_three_sec_main_wrapper" style="padding-top:0px;padding-bottom:0px;">
                       <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 ">
                           <div class="jp_footer_first_cont_wrapper">
                               <div class="jp_footer_first_cont">
-                                  <h2>ADDRESS</h2>
-                                  <p>Mayur Trade Center Phase 2, Old Pune – Mumbai Highway, Station Ofc 101C, Chinchwad, Pimpri-Chinchwad, Maharashtra 411019
+                                  <h2 style="margin-top:0px">ADDRESS</h2>
+                                  <p style="padding-top:15px">Mayur Trade Center Phase 2, Old Pune – Mumbai Highway, Station Ofc 101C, Chinchwad, Pimpri-Chinchwad, Maharashtra 411019
                                       hr@whitehr.com.<br><br>
-                                      
+<!--                                       
                                       Call us<br>
                                       +91 838 004 4677</p>
                                   <ul>
-                                      <li><i class="fa fa-plus-circle"></i>                            <a href="">                                         READ MORE</a></li>
-                                  </ul>
+                                      <li><i class="fa fa-plus-circle"></i><a href="" >                                         READ MORE</a></li>
+                                  </ul> -->
                               </div>
                           </div>
                       </div>
                       {% if request.user.is_authenticated %}
                       <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12  hidden-sm hidden-xs visible-md-block visible-lg-block">
-                        <div class="jp_footer_candidate_wrapper jp_footer_candidate_wrapper4">
+                        <div class="jp_footer_candidate_wrapper jp_footer_candidate_wrapper4" >
                             <div class="jp_footer_candidate">
-                                <h2>Quic Links</h2>
-                                <ul>
+                                <h2 style="padding-top:0px;">Quic Links</h2>
+                                <ul  style="margin-top:20px">
                                   <li><a href="{% url 'jobs:QuizAdmin' %}"><i class="fa fa-caret-right" aria-hidden="true"></i>QuizAdmin</a></li>
                                     <li><a href="{% url 'jobs:member' %}"><i class="fa fa-caret-right" aria-hidden="true"></i>Member </a></li>
                                     <!-- <li>                           <a href="{% url 'jobs:checkout' %}">                                         <i class="fa fa-caret-right" aria-hidden="true"></i> checkout</a></li> -->
@@ -328,7 +328,7 @@
                                     <!-- <li>                           <a href="{% url 'jobs:completeMember' %}">                                         <i class="fa fa-caret-right" aria-hidden="true"></i>complete member</a></li> -->
                                     <li><a href="{% url 'jobs:jobs' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Jobs</a></li>
                                     <li><a href="{% url 'jobs:allCourse' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Training</a></li>
-                                    <li><a href="{% url 'jobs:blog' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Blog</a></li>
+                                    <!-- <li><a href="{% url 'jobs:blog' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Blog</a></li> -->
 
                                 </ul>
                             </div>
@@ -344,10 +344,10 @@
                                       <li><a href="{% url 'jobs:testCandidate' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Add a Resume</a></li>
                                       <li><a href="{% url 'jobs:testCandidate' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> candidate Dashboard</a></li>
                                       <li><a href="{% url 'jobs:jobs' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Past Applications</a></li>
-                                      <li><a href="{% url 'jobs:testCandidate' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Job Alerts</a></li>
+                                      <!-- <li><a href="{% url 'jobs:testCandidate' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Job Alerts</a></li> -->
                                       <li><a href="{% url 'jobs:testCandidate' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Bookmarks</a></li>
-                                      <li><a href="{% url 'jobs:testCandidate' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> My Account</a></li>
-                                      <li><a href="{% url 'jobs:jobs' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Your Jobs</a></li>
+                                      <!-- <li><a href="{% url 'jobs:testCandidate' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> My Account</a></li> -->
+                                      <!-- <li><a href="{% url 'jobs:jobs' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Your Jobs</a></li> -->
                                   </ul>
                               </div>
                           </div>
@@ -360,14 +360,14 @@
                           <div class="jp_footer_candidate_wrapper jp_footer_candidate_wrapper2">
                               <div class="jp_footer_candidate">
                                   <h2>For candidate</h2>
-                                  <ul>
-                                      <li><a href="{% url 'jobs:testCandidate' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Add a Resume</a></li>
-                                      <li><a href="{% url 'jobs:testCandidate' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> candidate Dashboard</a></li>
-                                      <li><a href="{% url 'jobs:jobs' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Past Applications</a></li>
-                                      <li><a href="{% url 'jobs:testCandidate' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Job Alerts</a></li>
-                                      <li><a href="{% url 'jobs:testCandidate' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Bookmarks</a></li>
-                                      <li><a href="{% url 'jobs:testCandidate' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> My Account</a></li>
-                                      <li><a href="{% url 'jobs:jobs' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Your Jobs</a></li>
+                                  <ul style="margin-top:20px">
+                                      <li><a href="{% url 'jobs:testCandidate' %}" style=" text-decoration: none;"><i class="fa fa-caret-right" aria-hidden="true"></i> Add a Resume</a></li>
+                                      <li><a href="{% url 'jobs:testCandidate' %}" style=" text-decoration: none;"><i class="fa fa-caret-right" aria-hidden="true"></i> candidate Dashboard</a></li>
+                                      <li><a href="{% url 'jobs:jobs' %}" style=" text-decoration: none;"><i class="fa fa-caret-right" aria-hidden="true"></i> Past Applications</a></li>
+                                      <!-- <li><a href="{% url 'jobs:testCandidate' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Job Alerts</a></li> -->
+                                      <li><a href="{% url 'jobs:testCandidate' %}" style=" text-decoration: none;"><i class="fa fa-caret-right" aria-hidden="true"></i> Bookmarks</a></li>
+                                      <!-- <li><a href="{% url 'jobs:testCandidate' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> My Account</a></li> -->
+                                      <!-- <li><a href="{% url 'jobs:jobs' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Your Jobs</a></li> -->
                                   </ul>
                               </div>
                           </div>
@@ -378,15 +378,15 @@
                           <div class="jp_footer_candidate_wrapper jp_footer_candidate_wrapper3">
                               <div class="jp_footer_candidate">
                                   <h2>For Employers</h2>
-                                  <ul>
+                                  <ul style="margin-top:20px">
                                       
-                                      <li><a href="{% url 'jobs:candidates' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Browse candidates</a></li>
-                                      <li><a href="{% url 'jobs:employer-dashboard' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Employer Dashboard</a></li>
-                                      <li><a href="{% url 'jobs:employer-jobs-create' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Add Job</a></li>
-                                      <li><a href="{% url 'jobs:jobs' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Job Page</a></li>
-                                      <li><a href="{% url 'jobs:member' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Job Packages</a></li>
+                                      <li><a href="{% url 'jobs:candidates' %}" style=" text-decoration: none;"><i class="fa fa-caret-right" aria-hidden="true"></i> Browse candidates</a></li>
+                                      <li><a href="{% url 'jobs:employer-dashboard' %}" style=" text-decoration: none;"><i class="fa fa-caret-right" aria-hidden="true"></i> Employer Dashboard</a></li>
+                                      <li><a href="{% url 'jobs:employer-jobs-create' %}" style=" text-decoration: none;"><i class="fa fa-caret-right" aria-hidden="true"></i> Add Job</a></li>
+                                      <!-- <li><a href="{% url 'jobs:jobs' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Job Page</a></li> -->
+                                      <li><a href="{% url 'jobs:member' %}" style=" text-decoration: none;"><i class="fa fa-caret-right" aria-hidden="true"></i> Job Packages</a></li>
                                      
-                                      <li><a href="{% url 'jobs:employer-dashboard' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> My Account</a></li>
+                                      <!-- <li><a href="{% url 'jobs:employer-dashboard' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> My Account</a></li> -->
                                   </ul>
                               </div>
                           </div>
@@ -398,15 +398,15 @@
                       <div class="jp_footer_candidate_wrapper jp_footer_candidate_wrapper3">
                           <div class="jp_footer_candidate">
                               <h2>For Employers</h2>
-                              <ul>
+                              <ul style="margin-top:20px">
                                   
-                                  <li><a href="{% url 'jobs:candidates' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Browse candidates</a></li>
-                                  <li><a href="{% url 'jobs:employer-dashboard' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Employer Dashboard</a></li>
-                                  <li><a href="{% url 'jobs:employer-jobs-create' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Add Job</a></li>
-                                  <li><a href="{% url 'jobs:jobs' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Job Page</a></li>
-                                  <li><a href="{% url 'jobs:member' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Job Packages</a></li>
+                                  <li><a href="{% url 'jobs:candidates' %}" style=" text-decoration: none;"><i class="fa fa-caret-right" aria-hidden="true"></i> Browse candidates</a></li>
+                                  <li><a href="{% url 'jobs:employer-dashboard' %}" style=" text-decoration: none;"><i class="fa fa-caret-right" aria-hidden="true"></i> Employer Dashboard</a></li>
+                                  <li><a href="{% url 'jobs:employer-jobs-create' %}" style=" text-decoration: none;"><i class="fa fa-caret-right" aria-hidden="true"></i> Add Job</a></li>
+                                  <!-- <li><a href="{% url 'jobs:jobs' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Job Page</a></li> -->
+                                  <li><a href="{% url 'jobs:member' %}" style=" text-decoration: none;"><i class="fa fa-caret-right" aria-hidden="true"></i> Job Packages</a></li>
                                  
-                                  <li><a href="{% url 'jobs:employer-dashboard' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> My Account</a></li>
+                                  <!-- <li><a href="{% url 'jobs:employer-dashboard' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> My Account</a></li> -->
                               </ul>
                           </div>
                       </div>
@@ -416,17 +416,17 @@
                           <div class="jp_footer_candidate_wrapper jp_footer_candidate_wrapper4">
                               <div class="jp_footer_candidate">
                                   <h2>Information</h2>
-                                  <ul>
+                                  <ul style="margin-top:20px">
                                     
                                       <!-- <li>                           <a href="{% url 'jobs:checkout' %}">                                         <i class="fa fa-caret-right" aria-hidden="true"></i> checkout</a></li> -->
                                    
                                       <!-- <li>                           <a href="{% url 'jobs:completeMember' %}">                                         <i class="fa fa-caret-right" aria-hidden="true"></i>complete member</a></li> -->
                                       
-                                      <li><a href="{% url 'jobs:contact' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Contact Us</a></li>
-                                      <li><a href="{% url 'jobs:about' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> About</a></li>
-                                      <li><a href="{% url 'jobs:RefundPolicy' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Refund Policy</a></li>
-                                      <li>                           <a href="{% url 'jobs:privacy' %}">                                         <i class="fa fa-caret-right" aria-hidden="true"></i> Privacy Policy</a></li>
-                                      <li><a href="{% url 'jobs:terms' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Terms & Condition</a></li>
+                                      <!-- <li><a href="{% url 'jobs:contact' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Contact Us</a></li> -->
+                                      <li><a href="{% url 'jobs:about' %}" style=" text-decoration: none;"><i class="fa fa-caret-right" aria-hidden="true"></i> About</a></li>
+                                      <li><a href="{% url 'jobs:RefundPolicy' %}" style=" text-decoration: none;"><i class="fa fa-caret-right" aria-hidden="true"></i> Refund Policy</a></li>
+                                      <li>                           <a href="{% url 'jobs:privacy' %}" style=" text-decoration: none;">                                         <i class="fa fa-caret-right" aria-hidden="true"></i> Privacy Policy</a></li>
+                                      <li><a href="{% url 'jobs:terms' %}" style=" text-decoration: none;"><i class="fa fa-caret-right" aria-hidden="true"></i> Terms & Condition</a></li>
 
                                   </ul>
                               </div>
@@ -435,23 +435,23 @@
                       <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12  hidden-lg hidden-md visible-xs-block visible-sm-block " >
                           <div class="jp_footer_candidate_wrapper jp_footer_candidate_wrapper3">
                               <div class="jp_footer_candidate">
-                                  <h2>Mobile View Footer</h2>
-                                  <ul>
+                                 
+                                  <ul style="margin-top:5px">
                                       
-                                      <li><a href="{% url 'jobs:candidates' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Browse candidates</a></li>
-                                      <li><a href="{% url 'jobs:employer-dashboard' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Employer Dashboard</a></li>
-                                      <li><a href="{% url 'jobs:employer-jobs-create' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Add Job</a></li>
-                                      <li><a href="{% url 'jobs:jobs' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Job Page</a></li>
-                                      <li><a href="{% url 'jobs:member' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> Job Packages</a></li>
+                                      <li><a href="{% url 'jobs:candidates' %}" style=" text-decoration: none;"><i class="fa fa-caret-right" aria-hidden="true"></i> Browse candidates</a></li>
+                                      <li><a href="{% url 'jobs:employer-dashboard' %}" style=" text-decoration: none;"><i class="fa fa-caret-right" aria-hidden="true"></i> Employer Dashboard</a></li>
+                                      <li><a href="{% url 'jobs:employer-jobs-create' %}" style=" text-decoration: none;"><i class="fa fa-caret-right" aria-hidden="true"></i> Add Job</a></li>
+                                      <li><a href="{% url 'jobs:jobs' %}" style=" text-decoration: none;"><i class="fa fa-caret-right" aria-hidden="true"></i> Job Page</a></li>
+                                      <li><a href="{% url 'jobs:member' %}" style=" text-decoration: none;"><i class="fa fa-caret-right" aria-hidden="true"></i> Job Packages</a></li>
                                      
-                                      <li><a href="{% url 'jobs:employer-dashboard' %}"><i class="fa fa-caret-right" aria-hidden="true"></i> My Account</a></li>
+                                      <li><a href="{% url 'jobs:employer-dashboard' %}" style=" text-decoration: none;"><i class="fa fa-caret-right" aria-hidden="true"></i> My Account</a></li>
                                   </ul>
                               </div>
                           </div>
                       </div>
                   </div>
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                      <div class="jp_bottom_footer_Wrapper">
+                      <div class="jp_bottom_footer_Wrapper" style="padding-top:10px;padding-bottom:10px">
                           <div class="row">
                               <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                                   <div class="jp_bottom_footer_left_cont">

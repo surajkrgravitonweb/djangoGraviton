@@ -75,6 +75,7 @@ class Applicant(models.Model):
     created_at = models.DateTimeField(default=timezone.now)
     comment = models.TextField(blank=True, null=True)
     status = models.SmallIntegerField(default=1)
+    primum=models.BooleanField(default=False)
 
     class Meta:
         ordering = ["id"]
@@ -183,7 +184,8 @@ class TrainCertPlacement(models.Model):
     benifits=models.CharField(max_length=121)
     Technology=models.CharField(max_length=121)
 
-class DoucmentEmp(models.Model):
+class DoucmentEmpMain(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     companyIdCard=models.FileField(upload_to='uploads/category', blank=True, null=True)
     shopStablished=models.FileField(upload_to='uploads/category', blank=True, null=True)
     udyogAAdhar=models.FileField(upload_to='uploads/category', blank=True, null=True)
@@ -191,3 +193,6 @@ class DoucmentEmp(models.Model):
     msmacertificate=models.FileField(upload_to='uploads/category', blank=True, null=True)
     Tan=models.FileField(upload_to='uploads/category', blank=True, null=True)
     Din=models.FileField(upload_to='uploads/category', blank=True, null=True)
+    verified=models.BooleanField(default=False)
+    def __str__(self):
+        return self.user.email

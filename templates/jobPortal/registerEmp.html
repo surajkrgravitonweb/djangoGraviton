@@ -36,7 +36,7 @@ Purchase:
     <link rel="stylesheet" type="text/css" href="{% static 'jobPortal/css/style_II.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'jobPortal/css/responsive2.css' %}" />
     <!-- favicon links -->
-    <link rel="shortcut icon" type="image/png" href="{% static 'jobPortal/logo_png.png' %}" />
+    <link rel="shortcut icon" type="image/png" href="{% static 'jobPortal/gravitonLogo.png'  %}" />
 <script src='/google_analytics_auto.js'></script></head>
 
 <body>
@@ -183,7 +183,7 @@ Purchase:
                                           
                                             <div class="form-group col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                                 <div class="check-box text-center">
-                                                    <input type="checkbox" name="shipping-option" id="account-option_1">
+                                                    <input type="checkbox" name="shipping-option" id="account-option_1" required>
                                                     &ensp;
                                                     <label for="account-option_1">I agreed to the <a href="{% url 'jobs:terms' %}"
                                                             class="check_box_anchr">Terms and Conditions</a> governing

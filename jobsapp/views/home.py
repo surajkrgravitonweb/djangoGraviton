@@ -35,11 +35,22 @@ import json
 import razorpay
 import requests
 from django.core.files.storage import FileSystemStorage
+from .ccavutil import encrypt,decrypt
+from .ccavResponseHandler import res
+from string import Template
+from django.http import HttpResponse
 
+
+accessCode = 'AVTR82JE25BN28RTNB' 	
+workingKey = '2E46D0BA92D97F064B04C0C3F4B73598'
 
 def HomeView(request):
     context={}
+    s=Job.objects.all()
+    for x in s:
+        print(x.pk)
     context["trendings"] = Job.objects.all()[0:3]
+    print("trending value",context["trendings"])
     context["tags"]=Tag.objects.all()[:6]
     context["company"]=Job.objects.all()[0:10]
     print(Job.objects.all().count())
@@ -101,6 +112,8 @@ def HomeView(request):
     context["company"]=Job.objects.all()
     CompanyList=[]
     primarykeys=[]
+    context["primumCandidates"]=User.objects.filter(premium=True).filter(role="employee")
+    print("###@@@primus context value",context["primumCandidates"])
     for x in context["company"]:
         if x.company_name not in CompanyList:
             CompanyList.append(x.company_name)
@@ -174,9 +187,9 @@ class JobDetailsView(DetailView):
             raise Http404("Job doesn't exists")
         context = self.get_context_data(object=self.object)
         jobsStore=context["job"]
-        print(jobsStore)
+        print(jobsStore.tags)
         print("request.user checking",self.request.user)
-        if self.request. user. is_authenticated:
+        if self.request.user.is_authenticated:
             if self.request.user.role=="employer":
                 jobauth=Job.objects.get(pk=jobsStore.id)
                 print("id of the user",self.request.user.id)
@@ -189,11 +202,16 @@ class JobDetailsView(DetailView):
                 context["is_applied"]=None
             else:
                 context["is_applied"]=Applicant.objects.filter(user=request.user,job_id=jobsStore.id)
+                print(context["is_applied"])
+                if context["is_applied"] :
+                    context["is_applied"]=True
+                else:
+                    context["is_applied"]=None
+                print("context value printing",context["is_applied"])
         else:
             context["is_applied"]=None
             context["editauth"]=None
         print(context["is_applied"])
-        print(context["editauth"])
         return self.render_to_response(context)
 
 
@@ -1098,12 +1116,86 @@ def supportCandidate(request):
     return render(request,"jobPortal/supportCandidate.html")
 def documentEmp(request):
     if request.method=="POST":
-        companyIdCard=request.POST['companyIdCard']
-        shopStablished=request.POST['shopStablished']
-        udyogAAdhar=request.POST['udyogAAdhar']
-        certificateOfIncorpation=request.POST['certificateOfIncorpation']
-        msmacertificate=request.POST['msmacertificate']
-        Tan=request.POST['Tan']
-        Din=request.POST['Din']
+        if 'companyIdCard' in request.POST:
+            companyIdCard=request.POST['companyIdCard']
+        else:
+            companyIdCard=None
+        if 'shopStablished' in request.POST:
+            shopStablished=request.POST['shopStablished']
+        else:
+            shopStablished=None
+        if 'udyogAAdhar' in request.POST:
+            udyogAAdhar=request.POST['udyogAAdhar']
+        else:
+            udyogAAdhar=None
+        if 'certificateOfIncorpation' in request.POST:
+            certificateOfIncorpation=request.POST['certificateOfIncorpation']
+        else:
+            certificateOfIncorpation=None
+        if 'msmacertificate' in request.POST:
+            msmacertificate=request.POST['msmacertificate']
+        else:
+            msmacertificate=None
+        if 'Tan' in request.POST:
+            Tan=request.POST['Tan']
+        else:
+            Tan=None
+        if 'Din' in request.POST:
+            Din=request.POST['Din']
+        else:
+            Din=None
+        s=DoucmentEmpMain.objects.create(user=request.user,companyIdCard=companyIdCard,shopStablished=shopStablished,udyogAAdhar=udyogAAdhar,certificateOfIncorpation=certificateOfIncorpation,msmacertificate=msmacertificate,Tan=Tan,Din=Din,verified=False)
         return redirect("jobs:employer-dashboard")
 
+def webprint(request):
+    return render(request,'dataFrom.html')
+
+# @app.route('/ccavResponseHandler', methods=['GET', 'POST'])  
+def ccavResponseHandler(request):
+    plainText = res(request.POST['encResp'])	
+    return plainText
+# @app.route('/ccavRequestHandler', methods=['GET', 'POST'])
+def ccavRequestHandler(request):
+    p_merchant_id = request.POST['merchant_id']
+    p_order_id = request.POST['order_id']
+    p_currency = request.POST['currency']
+    p_amount = request.POST['amount']
+    p_redirect_url = request.POST['redirect_url']
+    p_cancel_url = request.POST['cancel_url']
+    p_language = request.POST['language']
+    p_billing_name = request.POST['billing_name']
+    p_billing_address = request.POST['billing_address']
+    p_billing_city = request.POST['billing_city']
+    p_billing_state = request.POST['billing_state']
+    p_billing_zip = request.POST['billing_zip']
+    p_billing_country = request.POST['billing_country']
+    p_billing_tel = request.POST['billing_tel']
+    p_billing_email = request.POST['billing_email']
+    p_delivery_name = request.POST['delivery_name']
+    p_delivery_address = request.POST['delivery_address']
+    p_delivery_city = request.POST['delivery_city']
+    p_delivery_state = request.POST['delivery_state']
+    p_delivery_zip = request.POST['delivery_zip']
+    p_delivery_country = request.POST['delivery_country']
+    p_delivery_tel = request.POST['delivery_tel']
+    p_merchant_param1 = request.POST['merchant_param1']
+    p_merchant_param2 = request.POST['merchant_param2']
+    p_merchant_param3 = request.POST['merchant_param3']
+    p_merchant_param4 = request.POST['merchant_param4']
+    p_merchant_param5 = request.POST['merchant_param5']
+    p_integration_type = request.POST['integration_type']
+    p_promo_code = request.POST['promo_code']
+    p_customer_identifier = request.POST['customer_identifier']
+    print("checking @@@@")
+    print(p_merchant_id)
+    merchant_data='merchant_id='+p_merchant_id+'&'+'order_id='+p_order_id + '&' + "currency=" + p_currency + '&' + 'amount=' + p_amount+'&'+'redirect_url='+p_redirect_url+'&'+'cancel_url='+p_cancel_url+'&'+'language='+p_language+'&'+'billing_name='+p_billing_name+'&'+'billing_address='+p_billing_address+'&'+'billing_city='+p_billing_city+'&'+'billing_state='+p_billing_state+'&'+'billing_zip='+p_billing_zip+'&'+'billing_country='+p_billing_country+'&'+'billing_tel='+p_billing_tel+'&'+'billing_email='+p_billing_email+'&'+'delivery_name='+p_delivery_name+'&'+'delivery_address='+p_delivery_address+'&'+'delivery_city='+p_delivery_city+'&'+'delivery_state='+p_delivery_state+'&'+'delivery_zip='+p_delivery_zip+'&'+'delivery_country='+p_delivery_country+'&'+'delivery_tel='+p_delivery_tel+'&'+'merchant_param1='+p_merchant_param1+'&'+'merchant_param2='+p_merchant_param2+'&'+'merchant_param3='+p_merchant_param3+'&'+'merchant_param4='+p_merchant_param4+'&'+'merchant_param5='+p_merchant_param5+'&'+'integration_type='+p_integration_type+'&'+'promo_code='+p_promo_code+'&'+'customer_identifier='+p_customer_identifier+'&'
+    encryption = encrypt(merchant_data,workingKey)
+    mid=p_merchant_id
+    encReq=encryption
+    xscode=accessCode
+    context={}
+    context["value"]="https://test.ccavenue.cdfdfom/transaction/transaction.do?command=initiateTransaction&merchant_id="+mid+"&encRequest="+encReq+"&access_code="+xscode
+    print(context["value"])		
+    return render(request,"authtokenPayment.html",context)	
+
+#Host Server and Port Number should be configured here.

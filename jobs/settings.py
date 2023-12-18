@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'ckeditor',
     'quiz',
-
+    'TPO_app',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -54,6 +54,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'allauth.account.middleware.AccountMiddleware',
     "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.security.SecurityMiddleware",
@@ -167,7 +168,7 @@ STATIC_ROOT = os.path.join(PROJECT_ROOT, "staticfiles")
 # cors config
 CORS_ORIGIN_ALLOW_ALL = True
 
-ALLOWED_HOSTS = ['whitehr.com','www.whitehr.com','18.207.247.66',"*"]
+ALLOWED_HOSTS = ['whitehr.com','www.whitehr.com','3.84.113.166',"*"]
 
 CORS_ALLOW_METHODS = (
     "DELETE", 

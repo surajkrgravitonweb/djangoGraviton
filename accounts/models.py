@@ -22,6 +22,7 @@ class User(AbstractUser):
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
+    premium=models.BooleanField(default=False)
 
     def __unicode__(self):
         return self.email

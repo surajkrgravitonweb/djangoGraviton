@@ -18,7 +18,7 @@
      <!-- GOOGLE FONTS-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-   <link rel="shortcut icon" type="image/png" href="{% static 'jobPortal/logo_png.png' %}" />
+   <link rel="shortcut icon" type="image/png" href="{% static 'jobPortal/gravitonLogo.png' %}" style="width: 100px; height: auto;"/>
    <!--Font Awesme 5-->
    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -270,54 +270,99 @@ input[type=submit] {
         <div id="page-wrapper" >
             <div id="page-inner" style="padding:20px; margin:0px;">
                <!-- Button trigger modal -->
+               {% if blockIf is  None  %}
+               <div class="modal fade"  data-backdrop="static" data-keyboard="false" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 
+               <div class="modal-dialog modal-dialog-centered" role="document">
+                 <div class="modal-content">
+                   <div class="modal-header">
+                     <h5 class="modal-title" id="exampleModalLongTitle">Verify As a Employer</h5>
+           
+                   </div>
+                   <form action="{% url 'jobs:documentEmp' %}" method="POST">
+                       {% csrf_token %}
+                   <div class="modal-body" style="padding-top: 0px;">
+                       <div class="mb-3">
+                           <label for="formFile" class="form-label">companyIdCard</label>
+                           <input class="form-control" type="file" name="companyIdCard" id="formFile" >
+                         </div>
+                         <h6 style="text-align: center;
+                         font-size: 26px;
+                         color: green;
+                         margin: 0px;">OR</h6>
+                         <div class="mb-3">
+                           <label for="formFile" class="form-label">shopStablished</label>
+                           <input class="form-control" type="file" name="shopStablished" id="formFile" >
+                         </div>
+                         <h6 style="text-align: center;
+                         font-size: 26px;
+                         color: green;
+                         margin: 0px;">OR</h6>
+                         <div class="mb-3">
+                           <label for="formFile" class="form-label">udyogAAdhar</label>
+                           <input class="form-control" type="file" name="udyogAAdhar" id="formFile" >
+                         </div>
+                         <h6 style="text-align: center;
+                         font-size: 26px;
+                         color: green;
+                         margin: 0px;">OR</h6>
+                         <div class="mb-3">
+                           <label for="formFile" class="form-label">certificateOfIncorpation</label>
+                           <input class="form-control" type="file" name="certificateOfIncorpation" id="formFile" >
+                         </div>
+                         <h6 style="text-align: center;
+                         font-size: 26px;
+                         color: green;
+                         margin: 0px;">OR</h6>
+                         <div class="mb-3">
+                           <label for="formFile" class="form-label">msmacertificate</label>
+                           <input class="form-control" type="file" name="msmacertificate" id="formFile" >
+                         </div>
+                         <h6 style="text-align: center;
+                         font-size: 26px;
+                         color: green;
+                         margin: 0px;">OR</h6>
+                         <div class="mb-3">
+                           <label for="formFile" class="form-label">Tan</label>
+                           <input class="form-control" type="file" name="Tan" id="formFile" >
+                         </div>
+                         <h6 style="text-align: center;
+                         font-size: 26px;
+                         color: green;
+                         margin: 0px;">OR</h6>
+                         <div class="mb-3">
+                           <label for="formFile" class="form-label">Din</label>
+                           <input class="form-control" type="file" name="Din" id="formFile" >
+                         </div>
+                   </div>
+                   <div class="modal-footer">
+           
+                     <button type="submit" class="btn btn-primary">Submit</button>
+                   </div>
+               </form>
+                 </div>
+               </div>
+               </div>
+               {% else %}
+               {% if not verification.verified %}
+               <div class="modal fade"  data-backdrop="static" data-keyboard="false" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+               <div class="modal-dialog modal-dialog-centered" role="document">
+                   <div class="modal-content">
+                     <div class="modal-header">
+                       <h5 class="modal-title" id="exampleModalLongTitle">Verify As a Employer</h5>
+                           Document is On verification 
+                     </div>
+
+                   </div>
+               </div>
+           </div>
+          
+               {% endif %}
+               {% endif  %}
+           
   <!-- Modal -->
-  <div class="modal fade"  data-backdrop="static" data-keyboard="false" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Verify As a Employer</h5>
-      
-        </div>
-        <form action="{% url 'jobs:documentEmp' %}" method="POST">
-        <div class="modal-body">
-            <div class="mb-3">
-                <label for="formFile" class="form-label">companyIdCard</label>
-                <input class="form-control" type="file" name="companyIdCard" id="formFile">
-              </div>
-              <div class="mb-3">
-                <label for="formFile" class="form-label">shopStablished</label>
-                <input class="form-control" type="file" name="shopStablished" id="formFile">
-              </div>
-              <div class="mb-3">
-                <label for="formFile" class="form-label">udyogAAdhar</label>
-                <input class="form-control" type="file" name="udyogAAdhar" id="formFile">
-              </div>
-              <div class="mb-3">
-                <label for="formFile" class="form-label">certificateOfIncorpation</label>
-                <input class="form-control" type="file" name="certificateOfIncorpation" id="formFile">
-              </div>
-              <div class="mb-3">
-                <label for="formFile" class="form-label">msmacertificate</label>
-                <input class="form-control" type="file" name="msmacertificate" id="formFile">
-              </div>
-              <div class="mb-3">
-                <label for="formFile" class="form-label">Tan</label>
-                <input class="form-control" type="file" name="Tan" id="formFile">
-              </div>
-              <div class="mb-3">
-                <label for="formFile" class="form-label">Din</label>
-                <input class="form-control" type="file" name="Din" id="formFile">
-              </div>
-        </div>
-        <div class="modal-footer">
-        
-          <button type="button" class="btn btn-primary">Submit</button>
-        </div>
-    </form>
-      </div>
-    </div>
-  </div>
+ 
                  <!-- /. ROW  -->
                  <div class="tab-content">
                     <div id="home" class="tab-pane fade in active">
@@ -1414,7 +1459,7 @@ function getCookie(cname)
                 setTimeout(function(){
                     console.log("popup")
                    PopUp();
-                },1000); // 5000 to load it after 5 seconds from page load
+                },1); // 5000 to load it after 5 seconds from page load
              });
           </script>
 

@@ -4,6 +4,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from .views import *
 
+
 app_name = "jobs"
 
 urlpatterns = [
@@ -116,6 +117,9 @@ urlpatterns = [
     path("faqEmp/",faqEmp,name="faqEmp"),
     path("supportEmp/",supportEmp,name="supportEmp"),
     path("supportCandidate/",supportCandidate,name="supportCandidate"),
-    path("documentEmp/",documentEmp,name="documentEmp")
+    path("documentEmp/",documentEmp,name="documentEmp"),
+    path("webprint/",webprint,name="webprint"),
+    path("ccavRequestHandler/",ccavRequestHandler,name="ccavRequestHandler"),
+    path("ccavResponseHandler/",ccavResponseHandler,name="ccavResponseHandler")
     
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)

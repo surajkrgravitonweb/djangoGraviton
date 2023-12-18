@@ -14,6 +14,7 @@ from jobsapp.forms import CreateJobForm
 from jobsapp.models import Applicant, Job
 from tags.models import Tag
 from django.shortcuts import redirect, render
+from jobsapp.models import *
 
 
 
@@ -41,6 +42,16 @@ class DashboardView(ListView):
         context = {}
         data=[]
         s=FullDetailEmployer.objects.filter(employerData=self.request.user)
+        # context["verification"]=DoucmentEmpMain.objects.get(user=self.request.user)
+        # print("verification code ",verification)
+        try:
+            context["verification"]=DoucmentEmpMain.objects.get(user=self.request.user)
+            context["blockIf"]="FJDKL"
+        except:
+            context["verification"]=None
+            context["blockIf"]=None
+        print("block if else ",context["blockIf"])
+        # print("verification code ",context["verification"])
         if s.exists():
             print("exist")
             context["checkUserDetails"]=True

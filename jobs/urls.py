@@ -30,6 +30,7 @@ path("", include("jobsapp.urls")),
     path("", include("accounts.urls")),
     path('', include('posts.urls')),
     path('', include('quiz.urls')),
+     path('', include('TPO_app.urls')),
 )
 
 # sitemaps = {

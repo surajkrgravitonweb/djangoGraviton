@@ -18,7 +18,7 @@
      <!-- GOOGLE FONTS-->
    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-   <link rel="shortcut icon" type="image/png" href="{% static 'jobPortal/logo_png.png' %}" />
+   <link rel="shortcut icon" type="image/png" href="{% static 'jobPortal/gravitonLogo.png'  %}" />
    <!--Font Awesme 5-->
    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -90,6 +90,68 @@ input[type=submit] {
     line-height: 1em;
     height: auto;
 }
+
+
+/*! CSS Used from: https://whitehr.com/static/jobPortal/css/bootstrap.css */
+a{background-color:transparent;}
+a:active,a:hover{outline:0;}
+@media print{
+*,*:before,*:after{color:#000!important;text-shadow:none!important;background:transparent!important;-webkit-box-shadow:none!important;box-shadow:none!important;}
+a,a:visited{text-decoration:underline;}
+a[href]:after{content:" (" attr(href) ")";}
+h2{orphans:3;widows:3;}
+h2{page-break-after:avoid;}
+}
+*{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+*:before,*:after{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;}
+a{color:#337ab7;text-decoration:none;}
+a:hover,a:focus{color:#23527c;text-decoration:underline;}
+a:focus{outline:5px auto -webkit-focus-ring-color;outline-offset:-2px;}
+h2{font-family:inherit;font-weight:500;line-height:1.1;color:inherit;}
+h2{margin-top:20px;margin-bottom:10px;}
+h2{font-size:30px;}
+ul{margin-top:0;margin-bottom:10px;}
+.col-xs-12,.col-sm-12,.col-md-12,.col-lg-12{position:relative;min-height:1px;padding-right:15px;padding-left:15px;}
+.col-xs-12{float:left;}
+.col-xs-12{width:100%;}
+@media (min-width: 768px){
+.col-sm-12{float:left;}
+.col-sm-12{width:100%;}
+}
+@media (min-width: 992px){
+.col-md-12{float:left;}
+.col-md-12{width:100%;}
+}
+@media (min-width: 1200px){
+.col-lg-12{float:left;}
+.col-lg-12{width:100%;}
+}
+/*! CSS Used from: https://whitehr.com/static/jobPortal/css/font-awesome.css */
+.fa{display:inline-block;font:normal normal normal 14px/1 FontAwesome;font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+.fa-check-square:before{content:"\f14a";}
+/*! CSS Used from: https://whitehr.com/static/jobPortal/css/style_II.css */
+a{color:#797979;text-decoration:none;}
+a:hover,a:focus{color:#707070;text-decoration:none;outline:none;}
+h2{font-family:'Montserrat', sans-serif;line-height:1.1;color:#222222;margin:0;padding:0;}
+ul{list-style:none;margin:0;padding:0;}
+.about_text_wrapper{float:left;width:100%;}
+.about_text_wrapper h2{font-size:20px;font-weight:bold;color:#000000;text-transform:uppercase;position:relative;}
+.about_text_wrapper h2:before{content:'';border:1px solid #23c0e9;width:8px;position:absolute;bottom:-15px;left:0;}
+.about_text_wrapper h2:after{content:'';border:1px solid #23c0e9;width:30px;position:absolute;bottom:-15px;left:12px;}
+.about_text_wrapper ul{margin:0;padding:0;list-style:none;}
+.abt_2_para{padding-top:60px;}
+.about_text_wrapper ul li:first-child{padding-top:0px;}
+.about_text_wrapper ul li{padding-top:20px;font-size:16px;}
+.about_text_wrapper ul li a{color:#999999;-webkit-transition:all .5s;-moz-transition:all .5s;-ms-transition:all .5s;-o-transition:all .5s;transition:all .5s;}
+.about_text_wrapper a:hover{color:#9a558f;-webkit-transition:all .5s;-moz-transition:all .5s;-ms-transition:all .5s;-o-transition:all .5s;transition:all .5s;}
+.about_text_wrapper ul li i{padding-right:10px;color:#23c0e9;}
+/*! CSS Used fontfaces */
+@font-face{font-family:'FontAwesome';src:url('https://whitehr.com/static/jobPortal/fonts/fontawesome-webfont3e6e.eot?v=4.7.0');src:url('https://whitehr.com/static/jobPortal/fonts/fontawesome-webfontd41d.eot#iefix&v=4.7.0') format('embedded-opentype'), url('https://whitehr.com/static/jobPortal/fonts/fontawesome-webfont3e6e.woff2?v=4.7.0') format('woff2'), url('https://whitehr.com/static/jobPortal/fonts/fontawesome-webfont3e6e.woff?v=4.7.0') format('woff'), url('https://whitehr.com/static/jobPortal/fonts/fontawesome-webfont3e6e.ttf?v=4.7.0') format('truetype'), url('https://whitehr.com/static/jobPortal/fonts/fontawesome-webfont3e6e.svg?v=4.7.0#fontawesomeregular') format('svg');font-weight:normal;font-style:normal;}
+@font-face{font-family:'Montserrat';font-style:normal;font-weight:400;src:local('Montserrat Regular'), local('Montserrat-Regular'), url(https://fonts.gstatic.com/s/montserrat/v12/rBHvpRWBkgyW99dXT88n7yEAvth_LlrfE80CYdSH47w.woff2) format('woff2');unicode-range:U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;}
+@font-face{font-family:'Montserrat';font-style:normal;font-weight:400;src:local('Montserrat Regular'), local('Montserrat-Regular'), url(https://fonts.gstatic.com/s/montserrat/v12/NX1NravqaXESu9fFv7KuqiEAvth_LlrfE80CYdSH47w.woff2) format('woff2');unicode-range:U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;}
+@font-face{font-family:'Montserrat';font-style:normal;font-weight:400;src:local('Montserrat Regular'), local('Montserrat-Regular'), url(https://fonts.gstatic.com/s/montserrat/v12/SKK6Nusyv8QPNMtI4j9J2yEAvth_LlrfE80CYdSH47w.woff2) format('woff2');unicode-range:U+0102-0103, U+1EA0-1EF9, U+20AB;}
+@font-face{font-family:'Montserrat';font-style:normal;font-weight:400;src:local('Montserrat Regular'), local('Montserrat-Regular'), url(https://fonts.gstatic.com/s/montserrat/v12/gFXtEMCp1m_YzxsBpKl68iEAvth_LlrfE80CYdSH47w.woff2) format('woff2');unicode-range:U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;}
+@font-face{font-family:'Montserrat';font-style:normal;font-weight:400;src:local('Montserrat Regular'), local('Montserrat-Regular'), url(https://fonts.gstatic.com/s/montserrat/v12/zhcz-_WihjSQC0oHJ9TCYPk_vArhqVIZ0nv9q090hN8.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;}
 </style>
    
 
@@ -173,12 +235,433 @@ input[type=submit] {
                
                  <!-- /. ROW  -->
                  <div class="tab-content">
-                  faq
-
-
-                     
+                    <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                        <div class="about_text_wrapper abt_2_para">
+                          <div class="section_heading section_2_heading">
+                            <h2><span> How to post a job on WhiteHR?
+                            </span></h2>
+                          </div>
+              
+                          <ul style="margin-top: 20px">
                          
+                            <li>
+                              <i class="fa fa-check-square" aria-hidden="true" style="color: #466bee"></i>
+                              <a href="">
+                               
+                                Login to Whitehr.com on Browser
+                                Sign up/Login using your email 
+                                Upload your company documents it will be verified in 2 hours 
+                                Fill in the required details to post a job.
+                                </a>
+                            </li>
+                           
+                          </ul>
+                        </div>
+                      </div>
 
+                      <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                        <div class="about_text_wrapper abt_2_para">
+                          <div class="section_heading section_2_heading">
+                            <h2><span> How many job posts can an employer make?
+
+                            </span></h2>
+                          </div>
+              
+                          <ul style="margin-top: 20px">
+                         
+                            <li>
+                              <i class="fa fa-check-square" aria-hidden="true" style="color: #466bee"></i>
+                              <a href="">
+                               
+                                Employer can use our post a job feature to post up to unlimited jobs at any given time 
+
+                                </a>
+                            </li>
+                           
+                          </ul>
+                        </div>
+                      </div>
+                     
+                      <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                        <div class="about_text_wrapper abt_2_para">
+                          <div class="section_heading section_2_heading">
+                            <h2><span>Any payment required posting my job on WhiteHR?
+
+
+                            </span></h2>
+                          </div>
+              
+                          <ul style="margin-top: 20px">
+                         
+                            <li>
+                              <i class="fa fa-check-square" aria-hidden="true" style="color: #466bee"></i>
+                              <a href="">
+                               
+                                WhiteHR is a free Job Posting portal for recruiters
+
+                                </a>
+                            </li>
+                           
+                          </ul>
+                        </div>
+                      </div>
+                     
+                      <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                        <div class="about_text_wrapper abt_2_para">
+                          <div class="section_heading section_2_heading">
+                            <h2><span>What should I avoid when posting a job?
+
+
+
+                            </span></h2>
+                          </div>
+              
+                          <ul style="margin-top: 20px">
+                         
+                            <li>
+                              <i class="fa fa-check-square" aria-hidden="true" style="color: #466bee"></i>
+                              <a href="">
+                               
+                                Candidates search for a job by using the details of your job title and description. Therefore, the Job Posting should be clear, with brief job descriptions and concise title.
+
+
+                                </a>
+                            </li>
+                           
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                        <div class="about_text_wrapper abt_2_para">
+                          <div class="section_heading section_2_heading">
+                            <h2><span>Does WhiteHR review my job post before making it visible to job seekers?
+
+
+
+
+                            </span></h2>
+                          </div>
+              
+                          <ul style="margin-top: 20px">
+                         
+                            <li>
+                              <i class="fa fa-check-square" aria-hidden="true" style="color: #466bee"></i>
+                              <a href="">
+                               
+                                Internal operations team validate the Job Posting (until then the post will show ‘Under Review’) and make it live, which will then be visible to the candidates who can apply on jobs or call the recruiter.
+
+
+                                </a>
+                            </li>
+                           
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                        <div class="about_text_wrapper abt_2_para">
+                          <div class="section_heading section_2_heading">
+                            <h2><span>How long does it take my job to be visible on WhiteHR?
+
+
+
+
+
+                            </span></h2>
+                          </div>
+              
+                          <ul style="margin-top: 20px">
+                         
+                            <li>
+                              <i class="fa fa-check-square" aria-hidden="true" style="color: #466bee"></i>
+                              <a href="">
+                               
+                                It takes just 15 minutes after your free job posting to be visible on Job Hai (on a working day).
+
+
+
+                                </a>
+                            </li>
+                           
+                          </ul>
+                        </div>
+                      </div>
+
+
+                      <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                        <div class="about_text_wrapper abt_2_para">
+                          <div class="section_heading section_2_heading">
+                            <h2><span>Why do I need to complete my Company KYC?
+
+
+
+
+
+
+                            </span></h2>
+                          </div>
+              
+                          <ul style="margin-top: 20px">
+                         
+                            <li>
+                              <i class="fa fa-check-square" aria-hidden="true" style="color: #466bee"></i>
+                              <a href="">
+                               
+                                Document Verification enables the jobseeker to trust the company they are applying for and to ensure protection against fake recruiters.
+
+
+
+                                </a>
+                            </li>
+                           
+                          </ul>
+                        </div>
+                      </div>
+
+
+                      
+                      <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                        <div class="about_text_wrapper abt_2_para">
+                          <div class="section_heading section_2_heading">
+                            <h2><span>How can I Upload company documents?
+
+
+
+
+
+
+
+                            </span></h2>
+                          </div>
+              
+                          <ul style="margin-top: 20px">
+                         
+                            <li>
+                              <i class="fa fa-check-square" aria-hidden="true" style="color: #466bee"></i>
+                              <a href="">
+                               
+                                If your Company Document is not uploaded, you will see a message on your dashboard. Follow the below steps:-
+
+
+
+                                </a>
+                            </li>
+                            <li>
+                              <i class="fa fa-check-square" aria-hidden="true" style="color: #466bee"></i>
+                              <a href="">
+                               
+                                Choose the document you want to upload from the list
+
+
+
+                                </a>
+                            </li>
+                            <li>
+                              <i class="fa fa-check-square" aria-hidden="true" style="color: #466bee"></i>
+                              <a href="">
+                               
+                                Type the document registration number
+                                Click on Upload Button and choose the document from your device
+                                   Choose the document you want to upload from the list
+
+
+
+                                </a>
+                            </li>
+                            <li>
+                              <i class="fa fa-check-square" aria-hidden="true" style="color: #466bee"></i>
+                              <a href="">
+                               
+                                Click on Submit Button
+
+
+
+
+                                </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                        <div class="about_text_wrapper abt_2_para">
+                          <div class="section_heading section_2_heading">
+                            <h2><span>My company is new hence I do not have government-approved documents yet. What to do in that case?
+
+
+
+
+                            </span></h2>
+                          </div>
+              
+                          <ul style="margin-top: 20px">
+                         
+                            <li>
+                              <i class="fa fa-check-square" aria-hidden="true" style="color: #466bee"></i>
+                              <a href="">
+                               
+                                We are eager to onboard you and assist you in staff hiring for your new company, however, we will not be able to post your job without authentic documents.
+
+
+                                </a>
+                            </li>
+                           
+                          </ul>
+                        </div>
+                      </div>
+
+
+                      <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                        <div class="about_text_wrapper abt_2_para">
+                          <div class="section_heading section_2_heading">
+                            <h2><span>Can I upload my personal documents to get the job post live?
+
+
+
+
+
+                            </span></h2>
+                          </div>
+              
+                          <ul style="margin-top: 20px">
+                         
+                            <li>
+                              <i class="fa fa-check-square" aria-hidden="true" style="color: #466bee"></i>
+                              <a href="">
+                               
+                                To complete the Company KYC, we accept authentic Company documents only. This ensures smooth Recruiter onboarding and quicker job posting.
+
+
+                                </a>
+                            </li>
+                           
+                          </ul>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                        <div class="about_text_wrapper abt_2_para">
+                          <div class="section_heading section_2_heading">
+                            <h2><span>Why is my job rejected?
+
+
+
+
+
+
+                            </span></h2>
+                          </div>
+              
+                          <ul style="margin-top: 20px">
+                         
+                            <li>
+                              <i class="fa fa-check-square" aria-hidden="true" style="color: #466bee"></i>
+                              <a href="">
+                               
+                                There can be multiple reasons for your job post being rejected. <br>
+                                You can check for the exact reason on the support button on your Employer Dashboard.
+                                
+
+                                </a>
+                            </li>
+                           
+                          </ul>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                        <div class="about_text_wrapper abt_2_para">
+                          <div class="section_heading section_2_heading">
+                            <h2><span>How do I edit the details in my job posting?
+
+
+
+
+
+
+
+                            </span></h2>
+                          </div>
+              
+                          <ul style="margin-top: 20px">
+                         
+                            <li>
+                              <i class="fa fa-check-square" aria-hidden="true" style="color: #466bee"></i>
+                              <a href="">
+                               
+                                You can click on the edit link on your job card. Once you have saved the changes, your posted job will be reviewed before making it live
+                                
+                              </br>
+                              Please note: The freshness of your job post will not be affected.
+                                
+                                
+
+                                </a>
+                            </li>
+                           
+                          </ul>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                        <div class="about_text_wrapper abt_2_para">
+                          <div class="section_heading section_2_heading">
+                            <h2><span>We are from the hiring team; management will not give us documents to upload. What to do in that case?
+
+
+
+
+
+
+
+                            </span></h2>
+                          </div>
+              
+                          <ul style="margin-top: 20px">
+                         
+                            <li>
+                              <i class="fa fa-check-square" aria-hidden="true" style="color: #466bee"></i>
+                              <a href="">
+                               
+                                As much as we are eager to post and advertise your job we are also firm with Company KYC hence the documents are mandatory. You can share your Recruiter login details with the authorized member in order to upload the document from their end.
+                              </br> Please be rest assured the company documents will not be misused or forwarded to any third party.
+                                
+                                
+
+                                </a>
+                            </li>
+                           
+                          </ul>
+                        </div>
+                      </div>
+                      <div class="col-lg-12 col-md-12 col-xs-12 col-sm-12">
+                        <div class="about_text_wrapper abt_2_para">
+                          <div class="section_heading section_2_heading">
+                            <h2><span>Why is uploading documents compulsory?
+
+
+
+
+
+
+                            </span></h2>
+                          </div>
+              
+                          <ul style="margin-top: 20px">
+                         
+                            <li>
+                              <i class="fa fa-check-square" aria-hidden="true" style="color: #466bee"></i>
+                              <a href="">
+                               
+                                Document Upload/ Account verification enables WhiteHR to create a pool of genuine Jobs only and eliminate the fake hiring activity from recruiters.
+
+                                
+
+                                </a>
+                            </li>
+                           
+                          </ul>
+                        </div>
+                      </div>
                           <!---view Profile---->
                           <!-- <div id="view" class="tab-pane fade ">
                             <h3 class="text-center"><b>View Company Profile</b></h3>
